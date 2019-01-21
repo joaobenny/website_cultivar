@@ -1,0 +1,33 @@
+<openerp>
+  <data>
+
+    <template id="cultivar_assets_frontend" name="Website cultivar Frontend Assets" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+
+		  <!-- Favicons -->
+		  <link href="/website_cultivar/static/src/img/favicon.png" rel="icon"/>
+		  <link href="/website_cultivar/static/src/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+		
+		  <!-- Google Fonts -->
+		  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet"/>
+		
+		  <!-- Bootstrap CSS File -->
+		  <link href="/website_cultivar/static/src/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+		
+		  <!-- Libraries CSS Files -->
+		  <link href="/website_cultivar/static/src/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+		  <link href="/website_cultivar/static/src/lib/animate/animate.min.css" rel="stylesheet"/>
+		  <link href="/website_cultivar/static/src/lib/ionicons/css/ionicons.min.css" rel="stylesheet"/>
+		  <link href="/website_cultivar/static/src/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
+		  <link href="/website_cultivar/static/src/lib/magnific-popup/magnific-popup.css" rel="stylesheet"/>
+		  <link href="/website_cultivar/static/src/lib/ionicons/css/ionicons.min.css" rel="stylesheet"/>
+		
+		  <!-- Main Stylesheet File -->
+		  <link href="/website_cultivar/static/src/css/style.css" rel="stylesheet"/>
+
+        
+      </xpath>
+    </template>
+
+  </data>
+</openerp>

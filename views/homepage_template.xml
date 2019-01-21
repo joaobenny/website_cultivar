@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+		<template name="Homepage" priority="29" t-name="website.homepage">
+			<t t-call="website.layout">
+			
+<!-- code -->
+
+			</t>
+		</template>
+			
+	</data>
+</odoo>

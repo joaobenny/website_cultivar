@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+      <template id="contact_cultivar" name="cultivar layout contact" inherit_id="website.contactus">
+      <xpath expr="//div[@id='wrap']" position="replace">
+		<div class="mg-page-title parallax">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Contactos</h2>
+						<p>Renda-se ao descanso e ao charme de uma época repleta dos Segredos das Gerações.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mg-page">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-5">
+						<h2 class="mg-sec-left-title">Envie-nos um E-mail</h2>
+						<form action="/website_form/" class="clearfix" method="post" data-model_name="crm.lead" data-success_page="/page/website_crm.contactus_thanks" enctype="multipart/form-data">
+							<div class="mg-contact-form-input">
+								<input type="text" class="form-control" id="name" placeholder="Nome..." name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+							</div>
+							<div class="mg-contact-form-input">
+								<input type="email" class="form-control" id="email" placeholder="E-mail..." name="email_from" required="" t-att-value="request.params.get('email_from', '')"/>
+							</div>
+							<div class="mg-contact-form-input">
+								<input type="text" class="form-control" id="name"  placeholder="Empresa..." name="partner_name" t-att-value="request.params.get('partner_name', '')"/>
+							</div>
+							<div class="mg-contact-form-input">
+								<input type="text" class="form-control" placeholder="Telefóne..." id="phone" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+							</div>
+							<div class="mg-contact-form-input">
+								<input type="text" class="form-control" id="name"  placeholder="Assunto..." name="name" required="" t-att-value="request.params.get('name', '')"/>
+							</div>
+							<div class="mg-contact-form-input">
+								<textarea class="form-control" rows="7" id="message" placeholder="Mensagem..." name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+							</div>
+							<input type="submit" class="btn btn-dark-main pull-right" value="Enviar"/>
+						</form>
+					</div>
+					<div class="col-md-7">
+						<h2 class="mg-sec-left-title">Endereço de Contacto</h2>
+						<p>Consulatu quietem ipsas obruamus. Controversia unam queo firmam videri, afranius derigatur sine sentit inliberali beatam scribendi splendide. Recusabo maximisque ferentur arbitraretur vellem oritur cupiditatibus copulatas.</p>
+						<ul class="mg-contact-info">
+							<li><i class="fa fa-map-marker"></i> <span t-field="res_company.street"/>, <span t-field="res_company.zip"/> <span t-field="res_company.city"/> - <span t-field="res_company.country_id.name"/></li>
+							<li><i class="fa fa-phone"></i> <span t-field="res_company.phone"/></li>
+							<li><i class="fa fa-envelope"></i> <a href="mailto:#"><span t-field="res_company.email"/></a></li>
+						</ul>
+
+						
+						<div id="mg-map" class="mg-map"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+      </xpath>
+		</template>
+
+	</data>
+</odoo>
