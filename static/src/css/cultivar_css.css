@@ -1,0 +1,35 @@
+.bg-local{background-color: #84B842}
+.bg-cate{background-color: #00974B}
+.bg-subcate{background-color: #095537}
+.bg-nvbar{background-color: #6EB043}
+.bg-claro{background-color: #A2CA74}
+.bg-escuro{background-color: #86B742}
+.bg-ultimas{background-color: #009B4D}
+.bg-atual{background-color: white}
+/* */
+.hr-claro{border: 3px solid white; width: 80%;}
+.hr-escuro{border: 3px solid #0F4C1F; width: 80%;}
+.he-text{color: white; font-weight: bold; padding-left: 5%;
+ padding-top: 2%; padding-bottom: 0%}
+.nbar-text{color: #198632; text-decoration-color: #198632; font-weight: bold; margin-bottom: 0px;}
+.navbar {margin-bottom: 0px}
+.tpdia-txt{color: white; margin-top: 7%}
+.ndia-txt{color: white; font-weight:bolder; font-size: 45px; margin-bottom: -5%; margin-top: -5%}
+.dia-txt{color: white; font-size: 12px; font-weight: bolder; margin-left: -2%}
+.ult-txt-tit{color: white; font-size: 20px; margin-top: 3%; margin-left: 3%}
+.ult-txt-res{color: white; font-size: 12px; margin-top: 2%; margin-left: 3%; margin-bottom: 3%}
+.dia-at-text{color: #89B050; font-size: 60px;  text-align: right; margin-right: -15%; font-weight: bold}
+.temps-text{color:white; font-size:15px; font-weight:bold}
+.cal-border{border: 0.1mm solid white}
+.mes-ano-text{color:  #009B48; font-weight: bold; font-size: 50px; text-align: center;}
+.msg-border{border-left: 1px solid black; border-right: 1px solid black;}
+
+/* Todas as divs tem o mesmo tamanho */
+.clearfix [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+.clearfix{
+    overflow: hidden;
+}
+/* Fim do codigo para divs com o mesmo tamanho */
