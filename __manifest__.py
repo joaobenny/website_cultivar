@@ -13,7 +13,7 @@
     'author':'Communities - Comunicações, Lda',
     'data': [
         #'security/ir.model.access.csv',
-        #'views/assets.xml',
+        'views/assets.xml',
         #'views/cultivar_template.xml',
         'views/homepage_template.xml',
         #'views/contact_template.xml',

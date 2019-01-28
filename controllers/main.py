@@ -18,15 +18,15 @@ class WebsiteCultivar(http.Controller):
     # Calendar code #
 
         calendar.setfirstweekday(0)  # Monday, first day of the week
-        months_name = ['Jan.', 'Fev.', 'Mar.', 'Abr.', 'Maio.', 'Jun.',
-                       'Jul.', 'Ago.', 'Set.', 'Out.', 'Nov.', 'Dez.']
+        months_name = ['JAN.', 'FEV.', 'MAR.', 'ABR.', 'MAIO.', 'JUN.',
+                       'JUL.', 'AGO.', 'SET.', 'OUT.', 'NOV.', 'DEZ.']
         days_name = ["Segunda", "Terça", "Quarta",
             "Quinta", "Sexta", "Sábado", "Domingo"]
         today = datetime.datetime.date(datetime.datetime.now()) # Today (YYYY-MM-DD)
         current_date = re.split('-', str(today)) # YYYY-MM-DD -> [YYYY, MM, DD]
         current_month_id = int(current_date[1])  # Current month number (1-12)
         current_month = months_name[current_month_id-1]  # Current month name
-        current_day = int(current_date[2])
+        current_day = 30#int(current_date[2])
         current_year = int(current_date[0])
 
         # Month stores every week with respective days (0 = not month day)
@@ -41,7 +41,7 @@ class WebsiteCultivar(http.Controller):
                              e.name))
 
         cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name, 5- Year)
-        first_skip = False # Bool to check if calendar started from current day 
+        first_skip = False # Bool to check if calendar started from current day
         while len(cal) < 31:
             for w in xrange(0, len(month)):
                 week = month[w]
@@ -50,13 +50,17 @@ class WebsiteCultivar(http.Controller):
                     if day < current_day and first_skip == False: # Continue if day is before current day
                         continue
                     elif day != 0 and len(cal) < 31: # Adds day to cal[] if cal doesn't has 31 days
-                        cal.append([day, days_name[d], "", current_month_id, current_month,
-                         current_year])
+                        if days_name[d] != "Sábado" or days_name[d] != "Domingo":
+                            cal.append([day, days_name[d], "", current_month_id, current_month,
+                             current_year, "diadasemana"])
+                        else:
+                            cal.append([day, days_name[d], "", current_month_id, current_month,
+                             current_year, "fimdesemana"])
                         first_skip = True # Current day already added
             if current_month_id == 12: # If it's the last month then jumps to next year
                 current_year += 1
                 current_month_id = 0
-            # Jumps to the next month
+            # Jumps to the next month every time the month ends and cal length < 31
             month = calendar.monthcalendar(current_year, current_month_id+1)
             current_month = months_name[current_month_id]
             current_month_id += 1
@@ -71,7 +75,7 @@ class WebsiteCultivar(http.Controller):
                         i[2] = e_name
                         continue
                     else:
-                        i[2] += " | " + e_name
+                        i[2] += ", " + e_name
 
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar
