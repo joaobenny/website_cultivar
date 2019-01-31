@@ -14,7 +14,7 @@
     'data': [
         #'security/ir.model.access.csv',
         'views/assets.xml',
-        #'views/cultivar_template.xml',
+        'views/cultivar_template.xml',
         'views/homepage_template.xml',
         #'views/contact_template.xml',
         #'views/404_template.xml',

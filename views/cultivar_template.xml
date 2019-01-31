@@ -2,141 +2,74 @@
 <odoo>
   <data>
 
-<template id="header_cultivar" name="cultivar layout top Menu" inherit_id="website.layout">
-    <xpath expr="//div[@id='wrapwrap']//header" position="replace">
+    <template id="header_cultivar" name="cultivar layout top Menu" inherit_id="website.layout">
+      <xpath expr="//div[@id='wrapwrap']//header" position="replace">
 
-  <!--==========================
-    Top Bar
-  ============================-->
-  <section id="topbar" class="d-none d-lg-block">
-    <div class="container clearfix">
-      <div class="contact-info float-left">
-        <i class="fa fa-envelope-o"></i> <a t-att-href="'mailto:'+res_company.email"><span t-field="res_company.email"/></a>
-        <i class="fa fa-phone"></i> <span t-field="res_company.phone"/>
-      </div>
-      <div class="social-links float-right">
-        <a t-att-href="website.social_twitter" class="twitter"><i class="fa fa-twitter"></i></a>
-        <a t-att-href="website.social_facebook" class="facebook"><i class="fa fa-facebook"></i></a>
-        <a t-att-href="website.social_googleplus" class="google-plus" rel="publisher"><i class="fa fa-google-plus"></i></a>
-        <a t-att-href="website.social_linkedin" class="linkedin"><i class="fa fa-linkedin"></i></a>
-        
+        <header>
+          <div class="container">
+            <!-- Search by "Local/Categoria/Subcategoria" -->
+            <div class="clearfix">
+              <div class="col-xs-12 col-sm-8 col-md-8">
+                <!-- Website image -->
+                <a class="navbar-brand" href="/"><img src="/website_cultivar/static/src/img/logo.svg" alt="logo"/></a>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4">
+                <div class="row local-bg local_subcat-border">
+                  <!--<p class="he-text">Local</p>-->
+                  <input class="he-text local-bg input-css" name="local-search" type="text" placeholder="Local"/>
+                </div>
+                <div class="row categoria-bg categoria-border">
+                  <p class="he-text" style="padding-left: 8%">Categoria</p>
+                  <!--<input class="he-text categoria-bg input-css" style="padding-left: 7%" name="local-search" type="text" placeholder="Categoria"/>-->
+                </div>
+                <div class="row subcategoria-bg local_subcat-border">
+                  <p class="he-text" style="padding-left: 8%">Subcategoria</p>
+                  <!--<input class="he-text subcategoria-bg input-css" style="padding-left: 7%" name="local-search" type="text" placeholder="Subcategoria"/>-->
+                </div>
+              </div>
+            </div>     
+          
+          
+            
+            <nav class="navbar navbar-inverse navbar-bg navbar-border" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="/website_cultivar/static/src/img/logo.svg" alt="logo"/></a>
+              </div>
 
-        <t t-foreach="languages" t-as="lg">
-            <t t-if="lg[0]==request.lang" >
-                <a class="oe_ls_lang oe_ls_lang_default dropdown-toggle" data-toggle="dropdown"
-                    t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=request.lang)"
-                    t-att-data-default-lang="editable and 'true' if request.lang == website.default_lang_code else None"
-                    t-att-data-lang="request.lang[0]">
-                    <img class="oe_ls_flag" t-att-src="'/website_language_selector/static/src/img/flags/16x11/' + lg[0].split('_')[0] + '.png'"/>
-                    <span class="oe_ls_name" t-esc="lg[1].split('/').pop()"/>
-                    <!--<span class="caret"></span>-->
-                </a>
-            </t>
-        </t>
-        <ul class="dropdown-menu js_user_menu" role="menu" style="min-width: 73px;" t-if="(request.website_multilang and len(languages) &gt; 1) or editable">
-            <t t-foreach="languages" t-as="lg">
-                <t t-if="lg[0] != request.lang">
-                    <li style="min-width: 50px;" >
-                        <a class="oe_ls_lang js_change_lang"
-                            t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
-                            t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
-                            t-att-data-lang="lg[0]">
-                            <img class="oe_ls_flag" t-att-src="'/website_language_selector/static/src/img/flags/16x11/' + lg[0].split('_')[0] + '.png'"/>
-                            <span class="oe_ls_name" t-esc="lg[1].split('/').pop()"/>
-                        </a>
-                    </li>
-                </t>
-             </t>
-            <li groups="website.group_website_publisher">
-                <t t-set="url_return" t-value="url_for('', '[lang]') + '?' + keep_query()"/>
-                <a t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id if website else ''}&amp;url_return=#{url_return}">
-                    <i class="fa fa-plus-circle"/> Add a language...
-                </a>
-            </li>
-        </ul> 
-                 
-        
-      </div>     
-    </div>
-  </section>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav nav-menu" id="top_menu">
+                  <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                    <t t-call="website.submenu"/>
+                  </t>
+                  <li class="divider" t-ignore="true" t-if="website.user_id != user_id"/>
+                  <li class="" t-ignore="true" t-if="website.user_id != user_id">
+                    <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <b>
+                        <span t-esc="(len(user_id.name)&gt;25) and (user_id.name[:23]+'...') or user_id.name"/>
+                      </b>
+                    </a>
+                    <ul class="dropdown-menu js_usermenu" role="menu">
+                      <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </nav>
 
-		  <header id="header">
-		    <div class="container">
-		
-
-
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#"><img src="/website_cultivar/static/src/img/logo.svg" alt="logo"/></a>
-					</div>		      
-		      		      
-		      
-		
-		      <nav id="nav-menu-container">
-		        <ul class="nav-menu" id="top_menu">
-					<t t-foreach="website.menu_id.child_id" t-as="submenu">
-                  <t t-call="website.submenu"/>
-               </t>
-               <li class="divider" t-ignore="true" t-if="website.user_id != user_id"/>
-
-		                 <li class="" t-ignore="true" t-if="website.user_id != user_id">
-                           <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                               <b>
-                                   <span t-esc="(len(user_id.name)&gt;25) and (user_id.name[:23]+'...') or user_id.name"/>
-                               </b>
-                           </a>
-                           <ul class="dropdown-menu js_usermenu" role="menu">
-                               <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a></li>
-                           </ul>
-                       </li>
-		        </ul>
-		      </nav>
-		    </div>
-		  </header>
-
-    </xpath>
-</template>
+          </div>
+        </header>
 
 
+      </xpath>
+    </template>
 
-
-<template id="footer_cultivar" inherit_id="website.layout" customize_show="True" name="cultivar Footer">
-  <xpath expr="//footer" position="replace">
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        Copyright &amp;copy; <span t-field="res_company.name" itemprop="name">Company name</span>. All rights reserved.
-      </div>
-      <div class="credits">
-
-        <a href="https://www.communities.pt/">Communities</a>
-      </div>
-
-    </div>
-  </footer>
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-  <script type="text/javascript" src="/website_cultivar/static/src/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="/website_cultivar/static/src/lib/easing/easing.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOY1xuqf9fTdao2aDy4VnsvFbgJbu3afI"></script>
-  <!-- Contact Form JavaScript File -->
-  <script type="text/javascript" src="/website_cultivar/static/src/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script type="text/javascript" src="/website_cultivar/static/src/js/main.js"></script> 
-
-  </xpath>
-</template>        
-        
-        
   </data>
 </odoo>

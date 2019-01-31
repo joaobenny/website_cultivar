@@ -3,6 +3,7 @@
 import re
 import calendar
 import datetime
+from datetime import date
 
 from odoo import http
 from odoo.http import request
@@ -26,19 +27,20 @@ class WebsiteCultivar(http.Controller):
         current_date = re.split('-', str(today)) # YYYY-MM-DD -> [YYYY, MM, DD]
         current_month_id = int(current_date[1])  # Current month number (1-12)
         current_month = months_name[current_month_id-1]  # Current month name
-        current_day = 30#int(current_date[2])
+        current_day = int(current_date[2])
         current_year = int(current_date[0])
 
         # Month stores every week with respective days (0 = not month day)
         month = calendar.monthcalendar(current_year, current_month_id)
         
         ev_dates = []  # Stores all events dates (0- Date_begin, 1- Date_end, 2- Name)
+        date_format = "%Y-%m-%d %H:%M:%S"
         for e in events:
-            DATE_FORMAT_STR = "%Y-%m-%d %H:%M:%S"
-            ev_dates.append((datetime.datetime.strptime(e.date_begin, DATE_FORMAT_STR),
-                             datetime.datetime.strptime(
-                                 e.date_end, DATE_FORMAT_STR),
-                             e.name))
+            conv_begin = datetime.datetime.strptime(e.date_begin, date_format)
+            conv_end = datetime.datetime.strptime(e.date_end, date_format)
+            start = date(conv_begin.year, conv_begin.month, conv_begin.day)
+            end = date(conv_end.year, conv_end.month, conv_end.day)
+            ev_dates.append((start, end, e.name))
 
         cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name, 5- Year)
         first_skip = False # Bool to check if calendar started from current day
@@ -52,10 +54,10 @@ class WebsiteCultivar(http.Controller):
                     elif day != 0 and len(cal) < 31: # Adds day to cal[] if cal doesn't has 31 days
                         if days_name[d] != "Sábado" or days_name[d] != "Domingo":
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, "diadasemana"])
+                             current_year, True])
                         else:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, "fimdesemana"])
+                             current_year, False])
                         first_skip = True # Current day already added
             if current_month_id == 12: # If it's the last month then jumps to next year
                 current_year += 1
@@ -67,8 +69,9 @@ class WebsiteCultivar(http.Controller):
 
         # Set events to all days shown (website: always shows current day + 30 days)
         for i in cal:
+            day_date = date(i[5], i[3], i[0])
             for e in ev_dates:
-                if (i[0] >= e[0].day and i[0] <= e[1].day) and (i[3] == e[0].month and i[5] == e[0].year):
+                if  e[0] <= day_date <= e[1]:
                     e_name = e[2]
                     # If statement to add all events that day has
                     if i[2] == "":

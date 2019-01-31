@@ -8,17 +8,20 @@
 /* Backgrounds Styles */
 .weekday-bg{background-color: #A2CA74}
 .today-bg{background-color: white}
+
+.month1-bg{background-color: #A2CA74}
+.month2-bg{background-color: orange}
+.month3-bg{background-color: blue}
 /* END of Backgrounds Styles */
 
 /* HR Styles */
 .weekday-hr{border: 2px solid white; background: white; width: 90%; vertical-align: middle; padding: 0px 0;}
 .temps-hr{border: 0.5px solid white; background: white; width: 100%; margin-top:1%; margin-bottom:1%; padding: 0px 0;}
-.today-hr{border: 0.5px solid #6EB043; background: #6EB043; margin-top: 2%; margin-bottom: 28%; padding: 0px 0; width: 80%;}
+.today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin-top: 2%; margin-bottom: 18.2%; padding: 0px 0;}
 .today-text-hr{margin-top: 75px; border: 0.5px solid #6EB043; background: #6EB043; width: 100%; vertical-align: middle; padding: 0px 0;}
 /* END of HR Styles */
 
 /* Text Styles */
-/* Fazer maneira de baixar todas as font-size se for abaixo de uma certa width (dispositivo movel) */
 .event_day-text{color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
 .temp_day-text{color: white; font-size: 12px; font-weight: bold;}
 .week_day-text{color: white; font-size: 12px; font-weight: bolder; text-align: right; margin-left: -1%;}
@@ -26,8 +29,8 @@
 
 .today_week_day-text{color: #84B842; font-size: 16px; text-align: right; margin-top: 5%; margin-bottom: -2%}
 .today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-right: -11%;}
-.today-text span {position:  absolute; bottom: -15px; right: 0;}
-.c_month_year-text{color:  #009B48; font-size: 50px; font-weight: bold; text-align: center;}
+.today-text span {position: absolute; bottom: -15px; right: 0;}
+.c_month_year-text{color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
 
 /* @media (max-width: 768px) {
     .c_month_year-text{font-size: 25px}
@@ -37,6 +40,10 @@
 /* Borders Styles */
 .msg-border{border-left: 1px solid black; border-right: 1px solid black;}
 .day-border{border: 0.1px solid white;}
+.current_ev-border{border-left: 1px solid #A2CA74; border-right: 1px solid #A2CA74;}
+.navbar-border{border: 0.1px solid white}
+.local_subcat-border{border: 0.1px solid white;}
+.categoria-border{border-left: 0.1px solid white; border-right: 0.1px solid white}
 /* END of Bordes Styles */
 
 /* Cols in clearfix all with the same height style */
@@ -49,7 +56,15 @@
 }
 /* END of Cols in clearfix all with the same height style */
 
-
+/* NavBar styles */
+.nav-menu a {color: darkgreen!important;}
+.navbar-inverse .navbar-nav > .active > a {background-color: darkkhaki;}
+.navbar-inverse .navbar-nav > li > a:hover {background-color: white;}
+.navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {background-color: white;}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {background-color: lightgrey;}
+.navbar-brand {padding-right: 60px;}
+.navbar {margin-bottom: 0px; border-radius: 0px;}
+/* END of NavBar Styles */
 
 /* Not Using */
 .local-bg{background-color: #84B842}
@@ -66,3 +81,78 @@
 .ult-txt-tit{color: white; font-size: 20px;}
 .ult-txt-res{color: white; font-size: 12px;}
 /* END of Not Using and CSS file */
+
+::placeholder {color: white;}
+
+.input-css {border-width: 0px; border-style: none; width: 100%; padding-top: 2%; padding-bottom: 2%;}
+
+/* event_modal Styles */
+.event_modal-css{
+	width:100%;
+ 	padding:20px;
+	text-align:center;
+}
+.event_modal-css img{
+	width:76px;
+	height:auto;
+	margin:0 auto;
+	display:block;
+	margin-bottom:25px;
+}
+
+.event_modal-css h1{
+	font-size: 42px;
+    margin-bottom: 25px;
+	color:#5C5C5C;
+}
+.event_modal-css p{
+	font-size: 20px;
+    margin-bottom: 27px;
+ 	color:#5C5C5C;
+}
+.event_modal-css h3.cupon-pop{
+	font-size: 25px;
+    margin-bottom: 40px;
+	color:#222;
+	display:inline-block;
+	text-align:center;
+	padding:10px 20px;
+	border:2px dashed #222;
+	clear:both;
+	font-weight:normal;
+}
+.event_modal-css h3.cupon-pop span{
+	color:#03A9F4;
+}
+.event_modal-css a{
+	display: inline-block;
+    margin: 0 auto;
+    padding: 9px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #8BC34A;
+    border-radius: 17px;
+}
+.event_modal-css a i{
+	margin-right:5px;
+	color:#fff;
+}
+#event_modal .modal-header{
+    border:0px;
+}
+
+.close_btn-css{
+    border: 0;
+    margin-top: -1%;
+    float: right;
+    background: transparent;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 2px grey;
+    opacity: 0.5;
+    line-height: 1;
+    cursor: pointer;
+}
+/* END of event_modal Styles */
