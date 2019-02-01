@@ -40,9 +40,9 @@ class WebsiteCultivar(http.Controller):
             conv_end = datetime.datetime.strptime(e.date_end, date_format)
             start = date(conv_begin.year, conv_begin.month, conv_begin.day)
             end = date(conv_end.year, conv_end.month, conv_end.day)
-            ev_dates.append((start, end, e.name))
+            ev_dates.append((start, end, e.name, e.id))
 
-        cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name, 5- Year)
+        cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name, 5- Year, 6- Weekday or Weekend)
         first_skip = False # Bool to check if calendar started from current day
         while len(cal) < 31:
             for w in xrange(0, len(month)):
@@ -52,12 +52,12 @@ class WebsiteCultivar(http.Controller):
                     if day < current_day and first_skip == False: # Continue if day is before current day
                         continue
                     elif day != 0 and len(cal) < 31: # Adds day to cal[] if cal doesn't has 31 days
-                        if days_name[d] != "Sábado" or days_name[d] != "Domingo":
+                        if days_name[d] == days_name[5] or days_name[d] == days_name[6]:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, True])
+                             current_year, True, "-1"])
                         else:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, False])
+                             current_year, False, "-1"])
                         first_skip = True # Current day already added
             if current_month_id == 12: # If it's the last month then jumps to next year
                 current_year += 1
@@ -67,7 +67,7 @@ class WebsiteCultivar(http.Controller):
             current_month = months_name[current_month_id]
             current_month_id += 1
 
-        # Set events to all days shown (website: always shows current day + 30 days)
+        # Set events to all days shown (website: shows current day + 30 days)
         for i in cal:
             day_date = date(i[5], i[3], i[0])
             for e in ev_dates:
@@ -76,9 +76,11 @@ class WebsiteCultivar(http.Controller):
                     # If statement to add all events that day has
                     if i[2] == "":
                         i[2] = e_name
+                        i[7] = e[3]
                         continue
                     else:
                         i[2] += ", " + e_name
+                        i[7] = str(i[7]) + "-" + str(e[3])
 
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar

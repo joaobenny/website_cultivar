@@ -9,16 +9,19 @@
 .weekday-bg{background-color: #A2CA74}
 .today-bg{background-color: white}
 
-.month1-bg{background-color: #A2CA74}
-.month2-bg{background-color: orange}
-.month3-bg{background-color: blue}
+.month1_wd-bg{background-color: #A2CA74}
+.month1_we-bg{background-color: green}
+.month2_wd-bg{background-color: orange}
+.month2_we-bg{background-color: darkgoldenrod}
+.month3_wd-bg{background-color: blue}
+.month3_we-bg{background-color: darkblue}
 /* END of Backgrounds Styles */
 
 /* HR Styles */
 .weekday-hr{border: 2px solid white; background: white; width: 90%; vertical-align: middle; padding: 0px 0;}
 .temps-hr{border: 0.5px solid white; background: white; width: 100%; margin-top:1%; margin-bottom:1%; padding: 0px 0;}
 .today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin-top: 2%; margin-bottom: 18.2%; padding: 0px 0;}
-.today-text-hr{margin-top: 75px; border: 0.5px solid #6EB043; background: #6EB043; width: 100%; vertical-align: middle; padding: 0px 0;}
+.today-text-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; vertical-align: middle; margin-top: 75px; padding: 0px 0;}
 /* END of HR Styles */
 
 /* Text Styles */
@@ -31,10 +34,6 @@
 .today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-right: -11%;}
 .today-text span {position: absolute; bottom: -15px; right: 0;}
 .c_month_year-text{color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
-
-/* @media (max-width: 768px) {
-    .c_month_year-text{font-size: 25px}
-} */
 /* END of Text Styles */
 
 /* Borders Styles */
@@ -142,8 +141,7 @@
     border:0px;
 }
 
-.close_btn-css{
-    border: 0;
+.close_btn-css{border: 0;
     margin-top: -1%;
     float: right;
     background: transparent;
