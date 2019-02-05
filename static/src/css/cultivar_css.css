@@ -34,6 +34,8 @@
 .today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-right: -11%;}
 .today-text span {position: absolute; bottom: -15px; right: 0;}
 .c_month_year-text{color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
+
+.Debug-text{color: black; font-size: 10px; font-weight: bold; text-align: left; margin-top: 5px; margin-bottom: 5px;}
 /* END of Text Styles */
 
 /* Borders Styles */
@@ -65,6 +67,10 @@
 .navbar {margin-bottom: 0px; border-radius: 0px;}
 /* END of NavBar Styles */
 
+/* Images styles */
+.day_weather-icon{height: 30px; width: 30px;}
+/* END of Images styles */
+
 /* Not Using */
 .local-bg{background-color: #84B842}
 .categoria-bg{background-color: #00974B}
@@ -86,7 +92,7 @@
 .input-css {border-width: 0px; border-style: none; width: 100%; padding-top: 2%; padding-bottom: 2%;}
 
 /* event_modal Styles */
-.event_modal-css{
+/* .event_modal-css{
 	width:100%;
  	padding:20px;
 	text-align:center;
@@ -108,8 +114,8 @@
 	font-size: 20px;
     margin-bottom: 27px;
  	color:#5C5C5C;
-}
-.event_modal-css h3.cupon-pop{
+} */
+/*.event_modal-css h3.cupon-pop{
 	font-size: 25px;
     margin-bottom: 40px;
 	color:#222;
@@ -119,10 +125,19 @@
 	border:2px dashed #222;
 	clear:both;
 	font-weight:normal;
-}
-.event_modal-css h3.cupon-pop span{
+}*/
+/* .event_modal-css h3.cupon-pop span{
 	color:#03A9F4;
-}
+} */
+
+/* .event_modal-css a i{
+	margin-right:5px;
+	color:#fff;
+} */
+/* #event_modal .modal-header{
+    border:0px;
+} */
+
 .event_modal-css a{
 	display: inline-block;
     margin: 0 auto;
@@ -133,15 +148,17 @@
     background-color: #8BC34A;
     border-radius: 17px;
 }
-.event_modal-css a i{
-	margin-right:5px;
-	color:#fff;
-}
-#event_modal .modal-header{
-    border:0px;
+
+.event_modal_day-text{
+    font-size: 24px;
+    color: black;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.close_btn-css{border: 0;
+.close_btn-css{
+    border: 0;
     margin-top: -1%;
     float: right;
     background: transparent;

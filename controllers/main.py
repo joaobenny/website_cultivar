@@ -3,6 +3,7 @@
 import re
 import calendar
 import datetime
+import requests
 from datetime import date
 
 from odoo import http
@@ -15,6 +16,20 @@ class WebsiteCultivar(http.Controller):
     def cultivar_home(self, **post):
 
         events = request.env['event.event'].sudo().search([])
+        ip = request.httprequest.environ["REMOTE_ADDR"]
+        if ip == "127.0.0.1":
+            ip = "auto:ip"
+
+        api_key = "0928dfce37ee46d2876171151190402"
+        url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)
+
+        reply = requests.get(url)
+        reply.raise_for_status()
+        content = reply.json()
+        weather = content["forecast"]["forecastday"]
+        print ("\nClient IP: " + ip)
+        print ("\nWeather API Status Code: {}".format(reply.status_code))
+        print ("\nClient Location based on its IP in the API: {}".format(content["location"]))
 
     # Calendar code #
 
@@ -23,7 +38,7 @@ class WebsiteCultivar(http.Controller):
                        'JUL.', 'AGO.', 'SET.', 'OUT.', 'NOV.', 'DEZ.']
         days_name = ["Segunda", "Terça", "Quarta",
             "Quinta", "Sexta", "Sábado", "Domingo"]
-        today = datetime.datetime.date(datetime.datetime.now()) # Today (YYYY-MM-DD)
+        today = datetime.datetime.date(datetime.datetime.now()) # Today date (YYYY-MM-DD)
         current_date = re.split('-', str(today)) # YYYY-MM-DD -> [YYYY, MM, DD]
         current_month_id = int(current_date[1])  # Current month number (1-12)
         current_month = months_name[current_month_id-1]  # Current month name
@@ -42,8 +57,9 @@ class WebsiteCultivar(http.Controller):
             end = date(conv_end.year, conv_end.month, conv_end.day)
             ev_dates.append((start, end, e.name, e.id))
 
-        cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name, 5- Year, 6- Weekday or Weekend)
-        first_skip = False # Bool to check if calendar started from current day
+        cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name,
+        # 5- Year, 6- Weekday or Weekend, 7- Events ID, 8- Min Temp, 9- Max Temp, 10- Weather Icon)
+        first_skip = False # Bool to check if calendar started from current days
         while len(cal) < 31:
             for w in xrange(0, len(month)):
                 week = month[w]
@@ -54,10 +70,10 @@ class WebsiteCultivar(http.Controller):
                     elif day != 0 and len(cal) < 31: # Adds day to cal[] if cal doesn't has 31 days
                         if days_name[d] == days_name[5] or days_name[d] == days_name[6]:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, True, "-1"])
+                             current_year, True, "-1", "", "", ""])
                         else:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, False, "-1"])
+                             current_year, False, "-1", "", "", ""])
                         first_skip = True # Current day already added
             if current_month_id == 12: # If it's the last month then jumps to next year
                 current_year += 1
@@ -73,7 +89,7 @@ class WebsiteCultivar(http.Controller):
             for e in ev_dates:
                 if  e[0] <= day_date <= e[1]:
                     e_name = e[2]
-                    # If statement to add all events that day has
+                    # If statement to add all events names and IDs that day has
                     if i[2] == "":
                         i[2] = e_name
                         i[7] = e[3]
@@ -81,7 +97,13 @@ class WebsiteCultivar(http.Controller):
                     else:
                         i[2] += ", " + e_name
                         i[7] = str(i[7]) + "-" + str(e[3])
-
+        
+        # Set Weather Information for first 7 days
+        for i in xrange(0,7):
+            cal[i][8] = int(round(weather[i]["day"]["mintemp_c"]))
+            cal[i][9] = int(round(weather[i]["day"]["maxtemp_c"]))
+            cal[i][10] = weather[i]["day"]["condition"]["icon"]
+        
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar
 
