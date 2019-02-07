@@ -19,6 +19,9 @@ class WebsiteCultivar(http.Controller):
         ip = request.httprequest.environ["REMOTE_ADDR"]
         if ip == "127.0.0.1":
             ip = "auto:ip"
+            print ("\nClient IP: Local Host\n")
+        else:
+            print ("Client IP: " + ip)
 
         api_key = "0928dfce37ee46d2876171151190402"
         url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)
@@ -27,9 +30,9 @@ class WebsiteCultivar(http.Controller):
         reply.raise_for_status()
         content = reply.json()
         weather = content["forecast"]["forecastday"]
-        print ("\nClient IP: " + ip)
-        print ("\nWeather API Status Code: {}".format(reply.status_code))
-        print ("\nClient Location based on its IP in the API: {}".format(content["location"]))
+        print ("Weather API Status Code: {}".format(reply.status_code))
+        print ("Client Location based on its IP in the API: {}".format(content["location"]))
+        print ("\n\n")
 
     # Calendar code #
 
@@ -57,6 +60,22 @@ class WebsiteCultivar(http.Controller):
             end = date(conv_end.year, conv_end.month, conv_end.day)
             ev_dates.append((start, end, e.name, e.id))
 
+        # Function to return calendar day moon phase
+        def moon_phases(day, month, year):
+            ages = [18, 0, 11, 22, 3, 14, 25, 6, 17, 28, 9, 20, 1, 12, 23, 4, 15, 26, 7]
+            offsets = [-1, 1, 0, 1, 2, 3, 4, 5, 7, 7, 9, 9]
+            all_phases = ["Lua nova", "Lua crescente", "Quarto crescente", "Lua crecente convexa",
+                            "Lua cheia", "Lua minguante convexa", "Quarto minguante", "Lua minguante"]
+            if day == 31:
+                day = 1
+            days_into_phase = ((ages[(year + 1) % 19] + ((day + offsets[month-1]) % 30) + (year < 1900)) % 30)
+            i = int((days_into_phase + 2) * 16/59.0)
+            if i > 7:
+                i = 7
+            phase = all_phases[i]
+            
+            return phase
+
         cal = [] # Stores 31 days info (0- Day, 1- Day Name, 2- Events, 3- Month Number, 4- Month Name,
         # 5- Year, 6- Weekday or Weekend, 7- Events ID, 8- Min Temp, 9- Max Temp, 10- Weather Icon)
         first_skip = False # Bool to check if calendar started from current days
@@ -70,10 +89,12 @@ class WebsiteCultivar(http.Controller):
                     elif day != 0 and len(cal) < 31: # Adds day to cal[] if cal doesn't has 31 days
                         if days_name[d] == days_name[5] or days_name[d] == days_name[6]:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, True, "-1", "", "", ""])
+                             current_year, True, "-1",
+                             "", "", "", moon_phases(day,current_month_id,current_year)])
                         else:
                             cal.append([day, days_name[d], "", current_month_id, current_month,
-                             current_year, False, "-1", "", "", ""])
+                             current_year, False, "-1",
+                             "", "", "", moon_phases(day,current_month_id,current_year)])
                         first_skip = True # Current day already added
             if current_month_id == 12: # If it's the last month then jumps to next year
                 current_year += 1
@@ -103,7 +124,7 @@ class WebsiteCultivar(http.Controller):
             cal[i][8] = int(round(weather[i]["day"]["mintemp_c"]))
             cal[i][9] = int(round(weather[i]["day"]["maxtemp_c"]))
             cal[i][10] = weather[i]["day"]["condition"]["icon"]
-        
+
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar
 

@@ -2,6 +2,7 @@
 .same_height-divs{
     min-height: 160px;
     max-height: 300px;
+    height: 160px;
 }
 /* END of Divs Styles */
 
@@ -18,23 +19,25 @@
 /* END of Backgrounds Styles */
 
 /* HR Styles */
-.weekday-hr{border: 2px solid white; background: white; width: 90%; vertical-align: middle; padding: 0px 0;}
-.temps-hr{border: 0.5px solid white; background: white; width: 100%; margin-top:1%; margin-bottom:1%; padding: 0px 0;}
-.today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin-top: 2%; margin-bottom: 18.2%; padding: 0px 0;}
-.today-text-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; vertical-align: middle; margin-top: 75px; padding: 0px 0;}
+.weekday-hr{border: 2px solid white; background: white; width: 100%; vertical-align: middle; padding: 0px 0;}
+.temps-hr{border: 0.5px solid white; background: white; width: 100%; margin: 5% 0; padding: 0px 0;}
+.today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 0; padding: 0px 0;}
+.today2-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 5% 0 0; padding: 0px 0;}
+.today-text-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 90%; vertical-align: middle; padding: 0px 0;}
 /* END of HR Styles */
 
 /* Text Styles */
 .event_day-text{color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
+.event_day-text a {color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
 .temp_day-text{color: white; font-size: 12px; font-weight: bold;}
 .week_day-text{color: white; font-size: 12px; font-weight: bolder; text-align: right; margin-left: -1%;}
 .day-text{color: white; font-size: 40px; font-weight: bolder; text-align: right; margin-top: -5%; margin-bottom: 0px;}
-
 .today_week_day-text{color: #84B842; font-size: 16px; text-align: right; margin-top: 5%; margin-bottom: -2%}
-.today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-right: -11%;}
-.today-text span {position: absolute; bottom: -15px; right: 0;}
+.today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-top: -5%;}
+.new_month-text{color: red; font-size: 12px; font-weight: bold; text-align: center;}
+/* .today-text span {position: absolute; bottom: 0; right: 0;} */
 .c_month_year-text{color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
-
+.c_month-text{color: #0F4C1F; font-size: 14px; font-weight: bold; margin-top: 5%; margin-left: 5%;}
 .Debug-text{color: black; font-size: 10px; font-weight: bold; text-align: left; margin-top: 5px; margin-bottom: 5px;}
 /* END of Text Styles */
 
@@ -43,7 +46,7 @@
 .day-border{border: 0.1px solid white;}
 .current_ev-border{border-left: 1px solid #A2CA74; border-right: 1px solid #A2CA74;}
 .navbar-border{border: 0.1px solid white}
-.local_subcat-border{border: 0.1px solid white;}
+.local_subcat-border{border: 1px solid white;}
 .categoria-border{border-left: 0.1px solid white; border-right: 0.1px solid white}
 /* END of Bordes Styles */
 
