@@ -21,7 +21,7 @@ class WebsiteCultivar(http.Controller):
             ip = "auto:ip"
             print ("\nClient IP: Local Host\n")
         else:
-            print ("Client IP: " + ip)
+            print ("\nClient IP: " + ip)
 
         api_key = "0928dfce37ee46d2876171151190402"
         url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)

@@ -1,176 +1,173 @@
-/* Divs Styles */
-.same_height-divs{
-    min-height: 160px;
-    max-height: 300px;
-    height: 160px;
-}
-/* END of Divs Styles */
-
-/* Backgrounds Styles */
-.weekday-bg{background-color: #A2CA74}
-.today-bg{background-color: white}
-
-.month1_wd-bg{background-color: #A2CA74}
-.month1_we-bg{background-color: green}
-.month2_wd-bg{background-color: orange}
-.month2_we-bg{background-color: darkgoldenrod}
-.month3_wd-bg{background-color: blue}
-.month3_we-bg{background-color: darkblue}
-/* END of Backgrounds Styles */
-
-/* HR Styles */
-.weekday-hr{border: 2px solid white; background: white; width: 100%; vertical-align: middle; padding: 0px 0;}
-.temps-hr{border: 0.5px solid white; background: white; width: 100%; margin: 5% 0; padding: 0px 0;}
-.today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 0; padding: 0px 0;}
-.today2-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 5% 0 0; padding: 0px 0;}
-.today-text-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 90%; vertical-align: middle; padding: 0px 0;}
-/* END of HR Styles */
-
-/* Text Styles */
-.event_day-text{color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
-.event_day-text a {color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
-.temp_day-text{color: white; font-size: 12px; font-weight: bold;}
-.week_day-text{color: white; font-size: 12px; font-weight: bolder; text-align: right; margin-left: -1%;}
-.day-text{color: white; font-size: 40px; font-weight: bolder; text-align: right; margin-top: -5%; margin-bottom: 0px;}
-.today_week_day-text{color: #84B842; font-size: 16px; text-align: right; margin-top: 5%; margin-bottom: -2%}
-.today-text{color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-top: -5%;}
-.new_month-text{color: red; font-size: 12px; font-weight: bold; text-align: center;}
-/* .today-text span {position: absolute; bottom: 0; right: 0;} */
-.c_month_year-text{color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
-.c_month-text{color: #0F4C1F; font-size: 14px; font-weight: bold; margin-top: 5%; margin-left: 5%;}
-.Debug-text{color: black; font-size: 10px; font-weight: bold; text-align: left; margin-top: 5px; margin-bottom: 5px;}
-/* END of Text Styles */
-
-/* Borders Styles */
-.msg-border{border-left: 1px solid black; border-right: 1px solid black;}
-.day-border{border: 0.1px solid white;}
-.current_ev-border{border-left: 1px solid #A2CA74; border-right: 1px solid #A2CA74;}
-.navbar-border{border: 0.1px solid white}
-.local_subcat-border{border: 1px solid white;}
-.categoria-border{border-left: 0.1px solid white; border-right: 0.1px solid white}
-/* END of Bordes Styles */
-
-/* Cols in clearfix all with the same height style */
-.clearfix{
-    overflow: hidden;
-}
-.clearfix [class*="col-"]{
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
-}
-/* END of Cols in clearfix all with the same height style */
-
-/* NavBar styles */
-.nav-menu a {color: darkgreen!important;}
-.navbar-inverse .navbar-nav > .active > a {background-color: darkkhaki;}
-.navbar-inverse .navbar-nav > li > a:hover {background-color: white;}
-.navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {background-color: white;}
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {background-color: lightgrey;}
-.navbar-brand {padding-right: 60px;}
-.navbar {margin-bottom: 0px; border-radius: 0px;}
-/* END of NavBar Styles */
-
-/* Images styles */
-.day_weather-icon{height: 30px; width: 30px;}
-/* END of Images styles */
-
-/* Not Using */
-.local-bg{background-color: #84B842}
-.categoria-bg{background-color: #00974B}
-.subcategoria-bg{background-color: #095537}
-.navbar-bg{background-color: #6EB043}
-.ultimas-bg{background-color: #009B4D}
-.DiaEscuro-bg{background-color: #86B742}
-
-.VerdeEscuro-hr{border: 2px solid #0F4C1F; width: 80%; padding: 0px 0}
-
-.he-text{color: white; font-weight: bold; padding-left: 5%; padding-top: 2%; padding-bottom: 0%}
-.nbar-text{color: #198632; text-decoration-color: #198632; font-weight: bold; margin-bottom: 0px;}
-.ult-txt-tit{color: white; font-size: 20px;}
-.ult-txt-res{color: white; font-size: 12px;}
-/* END of Not Using and CSS file */
-
-::placeholder {color: white;}
-
-.input-css {border-width: 0px; border-style: none; width: 100%; padding-top: 2%; padding-bottom: 2%;}
-
-/* event_modal Styles */
-/* .event_modal-css{
-	width:100%;
- 	padding:20px;
-	text-align:center;
-}
-.event_modal-css img{
-	width:76px;
-	height:auto;
-	margin:0 auto;
-	display:block;
-	margin-bottom:25px;
+@font-face{
+    font-family: "Rajdhani", sans-serif;
 }
 
-.event_modal-css h1{
-	font-size: 42px;
-    margin-bottom: 25px;
-	color:#5C5C5C;
-}
-.event_modal-css p{
-	font-size: 20px;
-    margin-bottom: 27px;
- 	color:#5C5C5C;
-} */
-/*.event_modal-css h3.cupon-pop{
-	font-size: 25px;
-    margin-bottom: 40px;
-	color:#222;
-	display:inline-block;
-	text-align:center;
-	padding:10px 20px;
-	border:2px dashed #222;
-	clear:both;
-	font-weight:normal;
-}*/
-/* .event_modal-css h3.cupon-pop span{
-	color:#03A9F4;
-} */
+/*  Global Styles */
+    /* Font */
+    .raj-font {
+        font-family: Rajdhani;
+    }
+    /* END of Font */
 
-/* .event_modal-css a i{
-	margin-right:5px;
-	color:#fff;
-} */
-/* #event_modal .modal-header{
-    border:0px;
-} */
+    .half-width{width: 50%;}
 
-.event_modal-css a{
-	display: inline-block;
-    margin: 0 auto;
-    padding: 9px 20px;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 14px;
-    background-color: #8BC34A;
-    border-radius: 17px;
-}
+    /* Text aligns */
+    .text_left-align{text-align: left;}
+    .text_right-align{text-align: right;}
+    .text_center-align{text-align: center;}
+    /* END of Text aligns */
+/* END of Global Styles */
 
-.event_modal_day-text{
-    font-size: 24px;
-    color: black;
-    font-weight: bolder;
-    text-align: center;
-    margin-bottom: 10px;
-}
+/* HomePage Styles */
+    /* Divs Styles */
+    .same_height-divs{
+        min-height: 165px;
+        max-height: 300px;
+        height: 165px;
+    }
+    /* END of Divs Styles */
 
-.close_btn-css{
-    border: 0;
-    margin-top: -1%;
-    float: right;
-    background: transparent;
-    color: black;
-    font-size: 25px;
-    font-weight: bolder;
-    text-shadow: 2px 2px 2px grey;
-    opacity: 0.5;
-    line-height: 1;
-    cursor: pointer;
-}
-/* END of event_modal Styles */
+    /* Backgrounds Styles */
+    .weekday-bg{background-color: #A2CA74}
+    .today-bg{background-color: white}
+
+    .month1_wd-bg{background-color: #A2CA74}
+    .month1_we-bg{background-color: green}
+    .month2_wd-bg{background-color: orange}
+    .month2_we-bg{background-color: darkgoldenrod}
+    .month3_wd-bg{background-color: blue}
+    .month3_we-bg{background-color: darkblue}
+    /* END of Backgrounds Styles */
+
+    /* HR Styles */
+    .weekday-hr{border: 2px solid white; background: white; width: 100%; vertical-align: middle; padding: 0px 0;}
+    .temps-hr{border: 0.5px solid white; background: white; width: 100%; margin: 5% 0; padding: 0px 0;}
+    .today-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 0; padding: 0px 0;}
+    .today2-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 100%; margin: 2% 5% 0 0; padding: 0px 0;}
+    .today-text-hr{border: 0.5px solid #6EB043; background: #6EB043; width: 90%; vertical-align: middle; padding: 0px 0;}
+    /* END of HR Styles */
+
+    /* Text Styles */
+    .event_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
+    .event_day-text a {font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
+    .temp_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold;}
+    .week_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bolder; text-align: right; margin-left: -1%;}
+    .day-text{font-family: Rajdhani; color: white; font-size: 40px; font-weight: bolder; text-align: right; margin-top: -5%; margin-bottom: 0px;}
+    .today_week_day-text{font-family: Rajdhani; color: #84B842; font-size: 16px; text-align: right; margin-top: 5%; margin-bottom: -2%}
+    .today-text{font-family: Rajdhani; color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-top: -5%;}
+    .new_month-text{font-family: Rajdhani; color: red; font-size: 12px; font-weight: bold; text-align: center;}
+    .today_temps-text{font-family: Rajdhani; color: #84B842; font-size: 12px; text-align: left;}
+    .c_month_year-text{font-family: Rajdhani; color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
+    .c_month-text{font-family: Rajdhani; color: #0F4C1F; font-size: 14px; font-weight: bold; margin-top: 5%; margin-left: 5%;}
+    .Debug-text{color: black; font-size: 10px; font-weight: bold; text-align: left; margin-top: 5px; margin-bottom: 5px;}
+    /* END of Text Styles */
+
+    /* Borders Styles */
+    .msg-border{border-left: 1px solid black; border-right: 1px solid black;}
+    .day-border{border: 0.1px solid white;}
+    .current_ev-border{border-left: 1px solid #A2CA74; border-right: 1px solid #A2CA74;}
+    .navbar-border{border: 0.1px solid white}
+    .local_subcat-border{border: 1px solid white;}
+    .categoria-border{border-left: 0.1px solid white; border-right: 0.1px solid white}
+    /* END of Bordes Styles */
+
+    /* Cols in clearfix all with the same height style */
+    .clearfix{
+        overflow: hidden;
+    }
+    .clearfix [class*="col-"]{
+        margin-bottom: -99999px;
+        padding-bottom: 99999px;
+    }
+    /* END of Cols in clearfix all with the same height style */
+
+    /* NavBar styles */
+    .nav-menu a {color: darkgreen!important;}
+    .navbar-inverse .navbar-nav > .active > a {background-color: darkkhaki;}
+    .navbar-inverse .navbar-nav > li > a:hover {background-color: white;}
+    .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {background-color: white;}
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {background-color: lightgrey;}
+    .navbar-brand {padding-right: 60px;}
+    .navbar {margin-bottom: 0px; border-radius: 0px;}
+    /* END of NavBar Styles */
+
+    /* Images styles */
+    .day_weather-icon{height: 25px; width: 25px;}
+    /* END of Images styles */
+
+    /* Not Using */
+    .local-bg{background-color: #84B842}
+    .categoria-bg{background-color: #00974B}
+    .subcategoria-bg{background-color: #095537}
+    .navbar-bg{background-color: #6EB043}
+    .ultimas-bg{background-color: #009B4D}
+    .DiaEscuro-bg{background-color: #86B742}
+
+    .VerdeEscuro-hr{border: 2px solid #0F4C1F; width: 80%; padding: 0px 0}
+
+    .he-text{font-family: Rajdhani; color: white; font-weight: bold; padding-left: 5%; padding-top: 2%; padding-bottom: 0%}
+    .nbar-text{font-family: Rajdhani; color: #198632; text-decoration-color: #198632; font-weight: bold; margin-bottom: 0px;}
+    .ult-txt-tit{font-family: Rajdhani; color: white; font-size: 20px;}
+    .ult-txt-res{font-family: Rajdhani; color: white; font-size: 12px;}
+    /* END of Not Using and CSS file */
+
+    ::placeholder {color: white;}
+
+    .input-css {border-width: 0px; border-style: none; width: 100%; padding-top: 2%; padding-bottom: 2%;}
+
+    /* event_modal Styles */
+    .event_modal-css a{
+        display: inline-block; margin: 0 auto; padding: 9px 20px; color: #fff; text-transform: uppercase;
+        font-size: 14px; background-color: #8BC34A; border-radius: 17px;}
+
+    .event_modal_day-text{font-family: Rajdhani; font-size: 24px; color: black; font-weight: bolder; text-align: center; margin-bottom: 10px;
+    }
+
+    .close_btn-css{border: 0; margin-top: -1%; float: right; background: transparent; color: black;
+        font-size: 25px; font-weight: bolder; text-shadow: 2px 2px 2px grey; opacity: 0.5; line-height: 1;
+        cursor: pointer;}
+    /* END of event_modal Styles */
+/* END of HomePage styles */
+
+/* Day event details styles */
+
+    /* Border styles */
+    .ded-day_ev-border{border-right: 1px solid #6EB043;}
+    @media (max-width: 991px) {
+        .ded-day_ev-border{border-right: none}
+    }
+    /* END of Border styles */
+
+    /* HR styles */
+    .date-hr{border: 0.5px solid #84B842; width: 80%; padding: 0px 0;}
+    /* END of HR styles */
+
+    /* Text styles */
+    .ded-year_month-text{font-family: Rajdhani; color: #009B48; font-size: 60px; font-weight: bold; font-weight: bold;}
+    .ded-day-text{font-family: Rajdhani; color: #89B050; font-size: 70px; font-weight: bold; margin-right: 15%;}
+    .ded-event_name-text{font-family: Rajdhani; color: #6EB043; font-size: 60px; font-weight: bold; margin-left: 2%;}
+    .ded-event_des-text{font-family: Rajdhani; color: #84B842; font-size: 50px; font-weight: bold; margin-left: 2%;}
+    .ded-event_program_title-text{font-family: Rajdhani; color: darkgreen; font-size: 19px; font-weight: bold;}
+    .ded-event_program-text{font-family: Rajdhani; color: darkgreen; font-size: 18px; font-weight: bold;}
+    .ded-event_weeek_day-text{font-family: Rajdhani; color: #84B842; font-size: 18px;}
+    .ded-event_image-text{font-family: Rajdhani; color: white; font-size: 18px; font-weight: bold;}
+
+    @media (max-width:767px){
+        .ded-event_name-text{margin-left: 0%;}
+        .ded-event_des-text{margin-left: 0%;}
+    }
+    /* End of Text styles */
+
+    /* Div styles */
+    .ded-ev_detail-div{background: #89B050; width: 100%;}
+    .ded-event_detail-div{margin-left: 3%}
+    @media (max-width:990px){
+        .ded-event_detail-div{margin-left: 0%;}
+    }
+    /* END of Div styles */
+
+    /* Image styles */
+    .ded-ev_main-img{padding-top: 2%; padding-bottom: 2%;}
+    /* END of Image Styles */
+
+/* END of Day event details styles */

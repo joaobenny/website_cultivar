@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+      <template id="event_detail_cultivar" name="cultivar layout event_detail" inherit_id="website_event.event_description_full">
+      <xpath expr="//div[@id='template_begin']" position="replace">
+
+		<div id="template_begin">
+			<div class="col-md-12">
+			<div class="row">
+				<div style="margin-top:2%" class="col-xs-12 col-md-4">
+					<div style="height:500px; width:100%; background: red">
+					</div>
+				</div>
+				<div style="margin-top:2%" class="col-xs-12 col-md-8">
+					<div class="ded-event_detail-div">
+						<div class="ded-ev_detail-div">
+							<span t-options='{"widget": "image", "class": "center-block ded-ev_main-img"}' t-field="event.image"/>
+							<div style = "margin-left: 5%; margin-right: 5%; padding-bottom: 2%" class="ded-event_image-text">
+								Algum texto yes yes yes  yes blalbl alblslbl
+								skfmdsp psmd f msdlf pdmbl abla lblb llb la
+								yee eee eee eeee eee eeee eeeeee eeet
+							</div>
+						</div>
+					</div>
+					<div class="ded-event_detail-div">
+						<div>
+							<br/><span class="ded-event_program_title-text">PROGRAMA</span><br/>
+							<span class="ded-event_program-text">
+								Bom dia, o meu nome é seila tou a escrever este
+								texto para testar se está tudo bem com o estilo,
+								consectetuer adipiscing elit, sed diam nonummy nibh
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+								sed diam nonummy nibh Lorem ipsum dolor sit amet,
+								consectetuer adipiscing elit, sed diam nonummy nibh
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+								sed diam nonummy nibh
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+
+      </xpath>
+	  </template>
+
+	</data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+      <template id="event_cultivar" name="cultivar layout event" inherit_id="website_event.event_details">
+      <xpath expr="//div[@class='container']" position="replace">
+
+        <div itemscope="itemscope" itemtype="http://schema.org/Event" class="container">
+			<!-- Variables  -->
+			<t t-set="months_name" t-value="['JAN.', 'FEV.', 'MAR.', 'ABR.', 'MAIO.', 'JUN.', 'JUL.', 'AGO.',
+			 'SET.', 'OUT.', 'NOV.', 'DEZ.']"/>
+			<t t-set="week_day_name" t-value="['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo']"/>
+			<t t-set="ev_date" t-value="datetime.datetime.strptime(event.date_begin, '%Y-%m-%d %H:%M:%S')"/>
+			<t t-set="week_day" t-value="datetime.date(ev_date.year, ev_date.month, ev_date.day).weekday()"/>
+			<!-- END of Variables -->
+
+			<!-- Event day begin -->
+			<div class="col-xs-12 col-md-4">
+				<div class="row text_center-align ded-day_ev-border">
+					<div class="half-width pull-left ded-year_month-text">
+						<span t-esc="months_name[int(ev_date.month)-1]"/>
+					</div>
+					<div class="half-width pull-left ded-year_month-text">
+						<span t-esc="ev_date.year"/>
+					</div>
+				</div>
+				<div class="row ded-day_ev-border">
+					<div style="margin: 0% 0% 0% 0%" class="half-width pull-left text_right-align">
+						<span class="ded-day-text" t-esc="ev_date.day"/>
+					</div>
+					<div class="half-width pull-left">
+						<span class="ded-event_weeek_day-text" t-esc="week_day_name[week_day]"/>
+						<hr style="margin-top: 0%;" class="date-hr pull-left"/>
+						<hr class="date-hr"/>
+					</div>
+				</div>
+			</div>
+			<!-- Event details (name, description, temperature icon)  -->
+			<div class="col-xs-12 col-md-8">
+				<div class="text_left-align">
+					<span class="ded-event_name-text" t-field="event.name"/><br/>
+					<span class="ded-event_des-text" t-esc="event.descricao"></span>
+					<span style="color:black" t-esc="day"/>
+				</div>
+			</div>
+
+            <h4 class="text-center text-muted" t-field="event.address_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;city&quot;]}"/>
+            <div class="row mt32 mb32">
+                <t t-raw="0"/>
+            </div>
+
+        </div>
+
+
+      </xpath>
+	  </template>
+
+	</data>
+</odoo>

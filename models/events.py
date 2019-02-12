@@ -10,7 +10,7 @@ class EventCultivar(models.Model):
     
     
     # adictional fields 
-    
+    descricao = fields.Text(string="Descrição")
     # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary("Image", attachment=True,
         help="This field holds the image used as avatar for this contact, limited to 1024x1024px",)
