@@ -16,6 +16,7 @@ class WebsiteCultivar(http.Controller):
     def cultivar_home(self, **post):
 
         events = request.env['event.event'].sudo().search([])
+        posts = request.env['blog.post'].sudo().search([])
         ip = request.httprequest.environ["REMOTE_ADDR"]
         if ip == "127.0.0.1":
             ip = "auto:ip"
@@ -130,4 +131,22 @@ class WebsiteCultivar(http.Controller):
 
     # End of Calendar Code #
 
-        return request.render("website.homepage", {'events': events, 'calendar': cal, "today": c_day})
+        return request.render("website.homepage", {'events': events, 'calendar': cal, "today": c_day, "posts": posts})
+
+    @http.route(['/event/<model("event.event"):event>/register'], type='http', auth="public", website=True)
+    def event_register(self, event, **post):
+        allevents = request.env['event.event'].sudo().search([])
+        events = []
+        for ev in allevents:
+            if ev.date_begin > event.date_begin:
+                events.append(ev)
+                if len(events) >= 20:
+                    break
+        values = {
+            'event': event,
+            'main_object': event,
+            'range': range,
+            'registrable': event.sudo()._is_event_registrable(),
+            'events': events
+        }
+        return request.render("website_event.event_description_full", values)

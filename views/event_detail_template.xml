@@ -8,11 +8,22 @@
 		<div id="template_begin">
 			<div class="col-md-12">
 			<div class="row">
-				<div style="margin-top:2%" class="col-xs-12 col-md-4">
-					<div style="height:500px; width:100%; background: red">
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="ded-next_ev-text">
+						<div t-if="len(events) > 0">
+							<p>Próximos eventos:</p>
+							<ul>
+								<t t-foreach="events" t-as="nevent">
+									<t t-set="nevent_date" t-value="datetime.datetime.strptime(nevent.date_begin, '%Y-%m-%d %H:%M:%S')"/>
+									<a itemprop="url" t-att-class="nevent.state == 'done' and 'text-success'" t-attf-href="/event/#{ slug(nevent) }/#{(not nevent.menu_id) and 'register' or ''}">
+										<li t-esc="'{0} - {1.day}/{1.month}/{1.year}'.format(nevent.name, nevent_date)"/>
+									</a>
+								</t>
+							</ul>
+						</div>
 					</div>
 				</div>
-				<div style="margin-top:2%" class="col-xs-12 col-md-8">
+				<div class="col-xs-12 col-sm-8 col-md-8">
 					<div class="ded-event_detail-div">
 						<div class="ded-ev_detail-div">
 							<span t-options='{"widget": "image", "class": "center-block ded-ev_main-img"}' t-field="event.image"/>

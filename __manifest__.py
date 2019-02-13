@@ -23,7 +23,7 @@
         'views/event_detail_template.xml',
         'views/event_views.xml',
     ],
-    'depends': ['crm', 'contacts', 'website', 'website_crm', 'event', 'website_event'],
+    'depends': ['crm', 'contacts', 'website', 'website_crm', 'event', 'website_event', 'website_blog'],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -4,12 +4,12 @@
 
 /*  Global Styles */
     /* Font */
-    .raj-font {
-        font-family: Rajdhani;
-    }
+    .raj-font {font-family: Rajdhani;}
+    .raj_bold-font {font-family: Rajdhani; font-weight: bold;}
     /* END of Font */
 
     .half-width{width: 50%;}
+    .full-width{width: 100%;}
 
     /* Text aligns */
     .text_left-align{text-align: left;}
@@ -48,18 +48,21 @@
     /* END of HR Styles */
 
     /* Text Styles */
-    .event_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
-    .event_day-text a {font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
-    .temp_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold;}
-    .week_day-text{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bolder; text-align: right; margin-left: -1%;}
-    .day-text{font-family: Rajdhani; color: white; font-size: 40px; font-weight: bolder; text-align: right; margin-top: -5%; margin-bottom: 0px;}
-    .today_week_day-text{font-family: Rajdhani; color: #84B842; font-size: 16px; text-align: right; margin-top: 5%; margin-bottom: -2%}
-    .today-text{font-family: Rajdhani; color: #89B050; font-size: 70px; font-weight: bold; text-align: right; margin-top: -5%;}
-    .new_month-text{font-family: Rajdhani; color: red; font-size: 12px; font-weight: bold; text-align: center;}
-    .today_temps-text{font-family: Rajdhani; color: #84B842; font-size: 12px; text-align: left;}
-    .c_month_year-text{font-family: Rajdhani; color: #009B48; font-size: 50px; font-weight: bold; vertical-align: middle}
-    .c_month-text{font-family: Rajdhani; color: #0F4C1F; font-size: 14px; font-weight: bold; margin-top: 5%; margin-left: 5%;}
+    .event_day-text{font-family: Rajdhani; color: white; font-size: 15px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
+    .event_day-text a {font-family: Rajdhani; color: white; font-size: 15px; font-weight: bold; margin-top: 10%; white-space: nowrap; text-overflow: ellipsis;}
+    .temp_day-text{font-family: Rajdhani; color: white; font-size: 15px; font-weight: bold;}
+    .week_day-text{font-family: Rajdhani; color: white; font-size: 14px; font-weight: bold; text-align: right; margin-left: -1%;}
+    .day-text{font-family: Rajdhani; color: white; font-size: 50px; font-weight: bolder; text-align: right; margin-top: -5%; margin-bottom: 0px;}
+    .today_week_day-text{font-family: Rajdhani; color: #84B842; font-size: 18px; text-align: right; margin-top: 5%; margin-bottom: -2%}
+    .today-text{font-family: Rajdhani; color: #89B050; font-size: 80px; font-weight: bold; text-align: right; margin-top: -5%;}
+    .new_month-text{font-family: Rajdhani; color: red; font-size: 14px; font-weight: bold; text-align: center;}
+    .today_temps-text{font-family: Rajdhani; color: #84B842; font-size: 14px; text-align: left;}
+    .c_month_year-text{font-family: Rajdhani; color: #009B48; font-size: 60px; font-weight: bold;}
+    .c_month-text{font-family: Rajdhani; color: #0F4C1F; font-size: 16px; font-weight: bold; margin-top: 5%; margin-left: 5%;}
+    .c_month-text a {font-family: Rajdhani; color: #0F4C1F; font-size: 14px; font-weight: bold;}
     .Debug-text{color: black; font-size: 10px; font-weight: bold; text-align: left; margin-top: 5px; margin-bottom: 5px;}
+    
+    .ultimas_overflow-text{overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;}
     /* END of Text Styles */
 
     /* Borders Styles */
@@ -107,8 +110,9 @@
 
     .he-text{font-family: Rajdhani; color: white; font-weight: bold; padding-left: 5%; padding-top: 2%; padding-bottom: 0%}
     .nbar-text{font-family: Rajdhani; color: #198632; text-decoration-color: #198632; font-weight: bold; margin-bottom: 0px;}
-    .ult-txt-tit{font-family: Rajdhani; color: white; font-size: 20px;}
-    .ult-txt-res{font-family: Rajdhani; color: white; font-size: 12px;}
+    .ult-txt-tit{font-family: Rajdhani; color: white; font-size: 20px; font-weight: bold;}
+    .ult-txt-res{font-family: Rajdhani; color: white; font-size: 12px; font-weight: bold;}
+    .ult-txt-res a {color: white; font-weight: bold;}
     /* END of Not Using and CSS file */
 
     ::placeholder {color: white;}
@@ -151,6 +155,8 @@
     .ded-event_program-text{font-family: Rajdhani; color: darkgreen; font-size: 18px; font-weight: bold;}
     .ded-event_weeek_day-text{font-family: Rajdhani; color: #84B842; font-size: 18px;}
     .ded-event_image-text{font-family: Rajdhani; color: white; font-size: 18px; font-weight: bold;}
+    .ded-next_ev-text{font-family: Rajdhani; color: darkgreen; font-size: 21px; font-weight: bold;}
+    .ded-next_ev-text a{font-family: Rajdhani; color: darkgreen; font-size: 18px; font-weight: bold;}
 
     @media (max-width:767px){
         .ded-event_name-text{margin-left: 0%;}
