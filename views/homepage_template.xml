@@ -305,12 +305,13 @@
 					});
 					var owl = $('.owl-carousel');
 					owl.owlCarousel({
-						items:1,
-						loop:true,
-						margin:10,
-						autoplay:true,
-						autoplayTimeout:10000,
-						autoplayHoverPause:true
+						items: 1,
+						loop: true,
+						margin: 10,
+						autoplay: true,
+						autoplayTimeout: 10000,
+						autoplayHoverPause: true,
+						dots: false
 					});
 				</script>
 			</t>
