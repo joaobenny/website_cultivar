@@ -31,7 +31,7 @@
 			<link rel="stylesheet" href="/website_cultivar/static/src/css/owl.theme.default.min.css"/>
 			<!-- <script src="jquery.min.js"></script> -->
 			<script src="/website_cultivar/static/src/js/owl.carousel.min.js"></script>
-
+			<script src="/website_cultivar/static/src/js/product_select.js"></script>
         
       </xpath>
     </template>

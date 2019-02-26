@@ -1,18 +1,28 @@
 <?xml version="1.0"?>
 <odoo>
-    <data>
-
-        <record id="view_event_cultivar_form" model="ir.ui.view">
-            <field name="name">event.event.cultivar.form</field>
-            <field name="model">event.event</field>
-            <field name="priority">2</field>
-            <field name="inherit_id" ref="event.view_event_form"/>
-            <field name="arch" type="xml">
-                <div name="button_box" position="after">
-                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
-                </div>
-            </field>
-        </record>
-        
-    </data>
+	<data>
+		<record id="view_event_cultivar_form" model="ir.ui.view">
+			<field name="name">event.event.cultivar.form</field>
+			<field name="model">event.event</field>
+			<field name="priority">2</field>
+			<field name="inherit_id" ref="event.view_event_form" />
+			<field name="arch" type="xml">
+				<div name="button_box" position="after">
+					<field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium'}" />
+				</div>
+				<field name="company_id" position="before">
+					<field name="recurrent" />
+					<field name="recurrence_id" />
+				</field>
+				<notebook position="inside">
+					<page name="produtos" string="Produtos">
+						<group>
+							<field name="product_type_id" />
+							<field name="product_ids" />
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+	</data>
 </odoo>

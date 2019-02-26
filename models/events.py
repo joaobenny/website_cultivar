@@ -3,6 +3,38 @@
 from odoo import api, fields, models, tools, _
 from odoo.addons.website.models.website import slug
 
+# Tabelas relacionadas com partners
+class PartnerCultivarType(models.Model):
+    _name = "res.partner.type"
+
+    name = fields.Char(string="Nome do tipo de Partner")
+
+class PartnerCultivar(models.Model):
+    _inherit = "res.partner"
+    
+    partner_type = fields.Many2one("res.partner.type")
+
+# Tabelas relacionadas com eventos
+class EventCultivarRecurrence(models.Model):
+    _name = "event.recurrence"
+
+    name = fields.Char(string="Período")
+    is_fixed = fields.Boolean(string="Data Fixa?")
+    days = fields.Integer(string="Intervalo de dias")
+
+class EventCultivarProductType(models.Model):
+    _name = "event.product.type"
+
+    name = fields.Char(string="Nome do tipo de Produto")
+    parent_id = fields.Many2one("event.product.type", string="Tipologia")
+    description = fields.Char(string="Descrição")
+
+class EventCultivarProduct(models.Model):
+    _name = "event.product"
+
+    name = fields.Char(string="Nome do Produto")
+    product_type_id = fields.Many2one("event.product.type")
+    description = fields.Char(string="Descrição")
 
 class EventCultivar(models.Model):
 
@@ -10,7 +42,12 @@ class EventCultivar(models.Model):
     
     
     # adictional fields 
-    descricao = fields.Text(string="Descrição")
+    breve_descricao = fields.Text(string="Breve Descrição")
+    recurrent = fields.Boolean(string="Is recurrent?")
+    recurrence_id = fields.Many2one("event.recurrence")
+    product_type_id = fields.Many2many("event.product.type")
+    product_ids = fields.Many2many("event.product")
+
     # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary("Image", attachment=True,
         help="This field holds the image used as avatar for this contact, limited to 1024x1024px",)
@@ -32,3 +69,35 @@ class EventCultivar(models.Model):
     def write(self, vals):
         tools.image_resize_images(vals)
         return super(EventCultivar, self).write(vals)
+
+#     n_anos = fields.Selection([('1a3','De 1 a 3 anos'), ('4a10','De 4 a 10 anos'), ('11a25','De 11 a 25 anos'), ('26a50','De 26 a 50 anos'), ('51a100','De 51 a 100 anos'),
+#      ('m100','Mais de 100 anos')])
+#     #tipologia = fields.Selection([('mercado','mercado'), ('festa','Festa'), ('feira','Feira'), ('romaria','Romaria'), ('outra','Outra')])
+#     #tipo_outra = fields.Char(string="Outra tipologia")
+#     distrito = fields.Char(string="Distrito")
+#     concelho = fields.Char(string="Concelho")
+#     freguesia = fields.Char(string="Freguesia")
+#     localidade = fields.Char(string="Localidade")
+
+#     periodicidade = fields.Selection([('semanal','Semanal'), ('mensal','Mensal'), ('bimensal','Bimensal'), ('trimensal','Trimensal'), ('anual','Anual'),
+#      ('outra','Outra')])
+#     peri_outra = fields.Char(string="Outra periodicidade")
+#     #entidade = fields.Selection([('juntafreg','Junta de Freguesia'), ('assocultural','Associação Cultural'), ('assodesportiva','Associação Desportiva'), ('comifabriqueira','Comissão Fabriqueira'), ('comifestas','Comissão de Festas'),
+#     # ('cammunicipal','Câmara Municipal'), ('assomunicipal','Associação Municipal'), ('outra','Outra')])
+#     #enti_outra = fields.Char(string="Outra Entidade Organizadora")
+
+#     #Contactos da Entidade Organizadora
+#     pessoa_nome = fields.Char(string="Pessoa Responsável")
+
+#     tipo_produto = fields.Selection([('agricolas','Agrícolas'), ('pecuarios','Pecuários'), ('florestais','Florestais'), ('outros','Outros')])
+#     tipo_prod_outros = fields.Char("Outros Tipos de Produtos Transacionados")
+#     produtos = fields.Char(string="Identificação dos Produtos Transacionados")
+
+#     #Informação Complementar do Evento
+#     coordenadas = fields.Char(string="Coordenadas GPS")
+
+#     imagem1 = fields.Binary(string="Imagem 1", attachment=True)
+#     imagem2 = fields.Binary(string="Imagem 2", attachment=True)
+#     imagem3 = fields.Binary(string="Imagem 3", attachment=True)
+#     imagem4 = fields.Binary(string="Imagem 4", attachment=True)
+#     imagem5 = fields.Binary(string="Imagem 5", attachment=True)

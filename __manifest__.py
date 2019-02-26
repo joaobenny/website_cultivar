@@ -22,6 +22,8 @@
         'views/event_template.xml',
         'views/event_detail_template.xml',
         'views/event_views.xml',
+        'views/products_views.xml',
+        'views/inquiry_event.xml',
     ],
     'depends': ['crm', 'contacts', 'website', 'website_crm', 'event', 'website_event', 'website_blog'],
     'installable': True,
