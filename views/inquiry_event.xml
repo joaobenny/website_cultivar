@@ -240,8 +240,11 @@
 													Tipo de Produtos Transacionados
 												</label>
 												<select id="products_type_select" name="produtos_tipo" class="form-control">
-													<option value="-1" selected="true" disabled="disabled">
+													<option value="-2" selected="true" disabled="True">
 														Selecione o tipo de produtos
+													</option>
+													<option value="-1">
+														Todos
 													</option>
 													<t t-foreach="products_type" t-as="p_type">
 														<option t-attf-value="#{p_type.id}">
@@ -258,7 +261,7 @@
 													Produtos Transacionados
 												</label>
 												<select id="dropdownlist" name="produtos" class="form-control">
-													<option value="-1" selected="true" disabled="disabled">
+													<option value="-1" selected="true">
 														Selecione os produtos
 													</option>
 													<t t-foreach="products" t-as="p">
@@ -295,7 +298,7 @@
 														console.log(this.text + ' ' + p_type + ' : display none');
 													}
 												});*/
-
+												if (p_type != -1){
 												$("#all_products div").each(function() {
 													var produto = $(this).attr('name');
 													if (produto == p_type){
@@ -307,15 +310,15 @@
 														console.log(this.text + ' ' + p_type + ' : display none');
 													}
 												});
+												}
+												else{
+													$("#all_products div").each(function() {
+														$(this).css("display", "block");
+													});
+												}
 
 											});
 										</script>
-
-										<div class="col-sm-12">
-											<div class="form-group">
-												<textarea placeholder="Identifcação dos Produtos Transacionados" class="form-control" name="descricao"></textarea>
-											</div>
-										</div>
 
 										<!-- Informação complementar do evento -->
 										<div class="col-sm-12">
