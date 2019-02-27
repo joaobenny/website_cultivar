@@ -239,7 +239,7 @@
 												<label for="products_type" style="display:none;">
 													Tipo de Produtos Transacionados
 												</label>
-												<select name="produtos_tipo" class="form-control" id="tipo_select" required="True">
+												<select id="products_type_select" name="produtos_tipo" class="form-control">
 													<option value="-1" selected="true" disabled="disabled">
 														Selecione o tipo de produtos
 													</option>
@@ -252,6 +252,64 @@
 											</div>
 										</div>
 
+										<div class="col-sm-6">
+											<div style="display:none" class="form-group">
+												<label for="products" style="display:none;">
+													Produtos Transacionados
+												</label>
+												<select id="dropdownlist" name="produtos" class="form-control">
+													<option value="-1" selected="true" disabled="disabled">
+														Selecione os produtos
+													</option>
+													<t t-foreach="products" t-as="p">
+														<option style="display:block" t-attf-value="#{int(p.product_type_id)}">
+															<t t-esc="p.name"/>
+														</option>
+													</t>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="form-group">
+												<div id="all_products" style="display:none; height: 200px; width: 250px; overflow-y: scroll; border:2px solid #ccc; float:left;">
+													<t t-foreach="products" t-as="p">
+														<div t-attf-name="#{int(p.product_type_id)}"><input type="checkbox" t-attf-value="#{int(p.product_type_id)}"/><t t-esc="p.name"/></div>
+													</t>
+												</div>
+											</div>
+										</div>
+
+										<script>
+											$("#products_type_select").on('change', function() {
+												var p_type = this.value;
+												console.log("diferente");
+												$("#all_products").css("display", "block");
+												/*$("#dropdownlist > option").each(function() {
+													if (this.value == p_type){
+														$(this).css("display", "block");
+														console.log(this.text + ' ' + p_type + ' : display block');
+													}
+													else {
+														$(this).css("display", "none");
+														console.log(this.text + ' ' + p_type + ' : display none');
+													}
+												});*/
+
+												$("#all_products div").each(function() {
+													var produto = $(this).attr('name');
+													if (produto == p_type){
+														$(this).css("display", "block");
+														console.log(this.text + ' ' + p_type + ' : display block');
+													}
+													else {
+														$(this).css("display", "none");
+														console.log(this.text + ' ' + p_type + ' : display none');
+													}
+												});
+
+											});
+										</script>
 
 										<div class="col-sm-12">
 											<div class="form-group">

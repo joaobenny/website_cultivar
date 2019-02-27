@@ -155,13 +155,15 @@ class WebsiteCultivar(http.Controller):
     @http.route('/event/inquiry', type='http', auth="public", website=True)
     def show_custom_webpage(self, **kwargs):
         # states = request.env['res.country.state'].search([])
-        products_type = request.env['event.product.type'].search([])
+        products_type = request.env['event.product.type'].search([('parent_id', '=', False)])
+        product = request.env['event.product'].search([])
         # partner_type = request.env['res.partner.type'].search([])
         # event_type = request.env['event.type'].search([])
         # periodo = request.env['event.recurrence'].search([])
         
         return http.request.render('website_cultivar.event_inquiry', {
             'products_type': products_type,
+            'products': product,
             # 'partner_type': partner_type,
             # 'event_type': event_type,
             # 'periodo': periodo
