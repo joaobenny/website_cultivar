@@ -41,12 +41,12 @@ class EventCultivar(models.Model):
     _inherit = "event.event"
     
     
-    # adictional fields 
-    breve_descricao = fields.Text(string="Breve Descrição")
+    # adictional fields
     recurrent = fields.Boolean(string="Is recurrent?")
     recurrence_id = fields.Many2one("event.recurrence")
     product_type_id = fields.Many2many("event.product.type")
     product_ids = fields.Many2many("event.product")
+    e_anos = fields.Char(string="Numero de edições")
 
     # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary("Image", attachment=True,

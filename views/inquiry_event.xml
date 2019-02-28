@@ -11,7 +11,7 @@
 									<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
 									<div class="row">
 
-										<div class="col-sm-6">
+										<div class="col-sm-12">
 											<div class="form-group">
 												<label for="self_description">
 													Entidade
@@ -19,39 +19,57 @@
 											</div>
 										</div>
 
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="Nome" type="text" name="entidade_nome" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label for="partner_type" style="display:none;">
+													Tipo de entidade organizadora
+												</label>
+												<select name="entidade_tipo" class="form-control">
+													<option value="null" selected="True" disabled="True">
+														Selecione o tipo de entidade
+													</option>
+													<t t-foreach="partner_type" t-as="p_type">
+														<option t-attf-value="#{p_type.id}">
+															<t t-esc="p_type.name" />
+														</option>
+													</t>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="E-mail (Utilizado para Acesso à Plataforma)" type="text" name="email" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="Password (Para Acesso à Plataforma)" type="password" name="password" class="form-control" />
+											</div>
+										</div>
+
 										<div class="col-sm-12">
 											<div class="form-group">
-												<input placeholder="Nome" type="text" name="entidade_nome" class="form-control" required="True" />
+												<input placeholder="Endereço" type="text" name="entidade_endereco" class="form-control" />
 											</div>
 										</div>
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input placeholder="E-mail (Utilizado para Acesso à Plataforma)" type="text" name="email" class="form-control" required="True" />
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input placeholder="Password (Para Acesso à Plataforma)" type="password" name="password" class="form-control" required="True" />
-											</div>
-										</div>
-
-										<div class="col-sm-12">
-											<div class="form-group">
-												<input placeholder="Endereço" type="text" name="entidade_endereco" class="form-control" required="True" />
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input placeholder="Código Postal" type="text" name="entidade_zip" class="form-control" required="True" />
+												<input placeholder="Código Postal" type="text" name="entidade_zip" class="form-control" />
 											</div>
 										</div>
 										
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input placeholder="Local" type="text" name="entidade_localidade" class="form-control" required="True" />
+												<input placeholder="Local" type="text" name="entidade_localidade" class="form-control" />
 											</div>
 										</div>
 
@@ -60,7 +78,7 @@
 												<label for="state" style="display:none;">
 													Distrito / Provincia
 												</label>
-												<select name="entidade_distrito" class="form-control" required="True">
+												<select name="entidade_distrito" class="form-control">
 													<option value="">
 														Selecione Distrito / Provincia
 													</option>
@@ -73,6 +91,52 @@
 											</div>
 										</div>
 
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label for="state" style="display:none;">
+													Concelho
+												</label>
+												<select name="entidade_distrito" class="form-control">
+													<option value="">
+														Selecione Concelho
+													</option>
+													<t t-foreach="states" t-as="state">
+														<option t-attf-value="#{state.id}">
+															<t t-esc="state.name" />
+														</option>
+													</t>
+												</select>
+											</div>
+										</div>
+
+										<!-- Contactos da Entidade Organizadora -->
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>
+													Contactos da Pessoa Responsável
+												</label>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="Pessoa Responsável" type="text" name="pessoa_nome" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="Telefone" type="text" name="pessoa_tel" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input placeholder="E-mail" type="text" name="pessoa_email" class="form-control" />
+											</div>
+										</div>
+
+										<!-- Dados do evento -->
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>
@@ -83,13 +147,27 @@
 
 										<div class="col-sm-12">
 											<div class="form-group">
-												<input placeholder="Designação" type="text" name="evento_nome" class="form-control" required="True" />
+												<input placeholder="Designação" type="text" name="evento_nome" class="form-control" />
 											</div>
 										</div>
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<select name="evento_edicao" class="form-control" required="True">
+												Data Inicio
+												<input placeholder="Data de inicio" type="date" name="date_begin" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												Data de fim
+												<input placeholder="Data de fim" type="date" name="date_end" class="form-control" />
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<select name="evento_edicao" class="form-control">
 													<option value="null" selected="true" disabled="disabled">
 														Número de Anos em que se realiza o evento
 													</option>
@@ -120,8 +198,8 @@
 												<label for="event_type" style="display:none;">
 													Tipologia do Evento
 												</label>
-												<select name="evento_tipo" class="form-control" required="True">
-													<option value="">
+												<select name="evento_tipo" class="form-control">
+													<option value="null" selected="True" disabled="True">
 														Selecione a tipologia
 													</option>
 													<t t-foreach="event_type" t-as="e_type">
@@ -133,32 +211,13 @@
 											</div>
 										</div>
 
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label for="state" style="display:none;">
-													Distrito / Provincia
-												</label>
-												<select name="evento_distrito" class="form-control" required="True">
-													<option value="">
-														Selecione Distrito / Provincia
-													</option>
-													<t t-foreach="states" t-as="state">
-														<option t-attf-value="#{state.id}">
-															<t t-esc="state.name" />
-														</option>
-													</t>
-												</select>
-											</div>
-										</div>
-
-										<!-- DATA DE REALIZAÇÃO -->
-
+										<!-- Data do evento -->
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label for="periodo" style="display:none;">
 													Periodicidade
 												</label>
-												<select name="evento_perio" class="form-control" required="True">
+												<select name="evento_perio" class="form-control">
 													<option value="">
 														Selecione a periodicidade
 													</option>
@@ -171,59 +230,39 @@
 											</div>
 										</div>
 
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label for="partner_type" style="display:none;">
-													Tipo de entidade organizadora
-												</label>
-												<select name="entidade_tipo" class="form-control" required="True">
-													<option value="">
-														Selecione o tipo de entidade
-													</option>
-													<t t-foreach="partner_type" t-as="p_type">
-														<option t-attf-value="#{p_type.id}">
-															<t t-esc="p_type.name" />
-														</option>
-													</t>
-												</select>
-											</div>
-										</div>
-
 										<div class="col-sm-12">
 											<div class="form-group">
 												<textarea placeholder="Breve Descrição do Evento" class="form-control" name="evento_descricao"></textarea>
 											</div>
 										</div>
 
-										<!-- Contactos da Entidade Organizadora -->
+										<!-- Dados do local do evento -->
+
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>
-													Contactos da Entidade Organizadora
+													Local de realização do Evento
 												</label>
 											</div>
 										</div>
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input placeholder="Pessoa Responsável" type="text" name="pessoa_nome" class="form-control" required="True" />
+												<label for="state" style="display:none;">
+													Distrito / Provincia
+												</label>
+												<select name="evento_distrito" class="form-control">
+													<option value="">
+														Selecione Distrito / Provincia
+													</option>
+													<t t-foreach="states" t-as="state">
+														<option t-attf-value="#{state.id}">
+															<t t-esc="state.name" />
+														</option>
+													</t>
+												</select>
 											</div>
 										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input placeholder="Telefone" type="text" name="pessoa_tel" class="form-control" required="True" />
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input placeholder="E-mail" type="text" name="pessoa_email" class="form-control" required="True" />
-											</div>
-										</div>
-
-
-
 
 										<!-- Tipo de produtos -->
 										<div class="col-sm-12">
@@ -280,15 +319,17 @@
 											</div>
 										</div>
 
-										<!-- aplicar multiple nas categorias -->
+										<!-- Jquery, aplicar multiple nas categorias / filtro -->
 										<script>
-											/*$("#products_type_select").on('change', function() {
-												var p_type = this.value;
-												$("#all_products").css("display", "block");
-												if (p_type != -1){
+											$("#products_type_select").on('change', function() {
+
+												var p_type = $('#products_type_select option:selected').map(function(a, item){return item.value;});
+												console.log(p_type)
+												if (p_type.length != 0){
+													$("#all_products").css("display", "block");
 													$("#all_products div").each(function() {
 														var produto = $(this).attr('name');
-														if (produto == p_type){
+														if ($.inArray(produto, p_type) != -1){
 															$(this).css("display", "block");
 														}
 														else {
@@ -297,28 +338,8 @@
 													});
 												}
 												else{
-													$("#all_products div").each(function() {
-														$(this).css("display", "block");
-													});
+													$("#all_products").css("display", "none");	
 												}
-
-											});*/
-
-											$("#products_type_select").on('change', function() {
-												$("#all_products").css("display", "block");
-
-												var p_type = $('#products_type_select option:selected').map(function(a, item){return item.value;});
-												console.log(p_type)
-
-												$("#all_products div").each(function() {
-													var produto = $(this).attr('name');
-													if ($.inArray(produto, p_type) != -1){
-														$(this).css("display", "block");
-													}
-													else {
-														$(this).css("display", "none");
-													}
-												});
 											});
 
 
@@ -327,7 +348,8 @@
 											$('#products_type_select').multiselect({
 												includeSelectAllOption: true,
 												selectAllText: 'Todos',
-												nonSelectedText: 'Selecione uma categoria'
+												nonSelectedText: 'Selecione uma categoria',
+												allSelectedText: 'Todos as categorias selecionadas'
 											});
 
 										</script>
@@ -344,7 +366,7 @@
 										<!-- Informação complementar do evento -->
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input placeholder="Coordenadas GPS" type="text" name="gps" class="form-control" required="True" />
+												<input placeholder="Coordenadas GPS" type="text" name="gps" class="form-control" />
 											</div>
 										</div>
 
