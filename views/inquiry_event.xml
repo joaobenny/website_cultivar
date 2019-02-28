@@ -239,13 +239,10 @@
 												<label for="products_type" style="display:none;">
 													Tipo de Produtos Transacionados
 												</label>
-												<select id="products_type_select" name="produtos_tipo" class="form-control">
-													<option value="-2" selected="true" disabled="True">
-														Selecione o tipo de produtos
-													</option>
-													<option value="-1">
+												<select id="products_type_select" multiple="True" name="produtos_tipo" class="form-control">
+													<!-- <option value="-1">
 														Todos
-													</option>
+													</option> -->
 													<t t-foreach="products_type" t-as="p_type">
 														<option t-attf-value="#{p_type.id}">
 															<t t-esc="p_type.name"/>
@@ -283,33 +280,21 @@
 											</div>
 										</div>
 
+										<!-- aplicar multiple nas categorias -->
 										<script>
-											$("#products_type_select").on('change', function() {
+											/*$("#products_type_select").on('change', function() {
 												var p_type = this.value;
-												console.log("diferente");
 												$("#all_products").css("display", "block");
-												/*$("#dropdownlist > option").each(function() {
-													if (this.value == p_type){
-														$(this).css("display", "block");
-														console.log(this.text + ' ' + p_type + ' : display block');
-													}
-													else {
-														$(this).css("display", "none");
-														console.log(this.text + ' ' + p_type + ' : display none');
-													}
-												});*/
 												if (p_type != -1){
-												$("#all_products div").each(function() {
-													var produto = $(this).attr('name');
-													if (produto == p_type){
-														$(this).css("display", "block");
-														console.log(this.text + ' ' + p_type + ' : display block');
-													}
-													else {
-														$(this).css("display", "none");
-														console.log(this.text + ' ' + p_type + ' : display none');
-													}
-												});
+													$("#all_products div").each(function() {
+														var produto = $(this).attr('name');
+														if (produto == p_type){
+															$(this).css("display", "block");
+														}
+														else {
+															$(this).css("display", "none");
+														}
+													});
 												}
 												else{
 													$("#all_products div").each(function() {
@@ -317,7 +302,34 @@
 													});
 												}
 
+											});*/
+
+											$("#products_type_select").on('change', function() {
+												$("#all_products").css("display", "block");
+
+												var p_type = $('#products_type_select option:selected').map(function(a, item){return item.value;});
+												console.log(p_type)
+
+												$("#all_products div").each(function() {
+													var produto = $(this).attr('name');
+													if ($.inArray(produto, p_type) != -1){
+														$(this).css("display", "block");
+													}
+													else {
+														$(this).css("display", "none");
+													}
+												});
 											});
+
+
+
+
+											$('#products_type_select').multiselect({
+												includeSelectAllOption: true,
+												selectAllText: 'Todos',
+												nonSelectedText: 'Selecione uma categoria'
+											});
+
 										</script>
 
 										<!-- Informação complementar do evento -->

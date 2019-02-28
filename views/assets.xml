@@ -21,6 +21,7 @@
 		  <link href="/website_cultivar/static/src/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
 		  <link href="/website_cultivar/static/src/lib/magnific-popup/magnific-popup.css" rel="stylesheet"/>
 		  <link href="/website_cultivar/static/src/lib/ionicons/css/ionicons.min.css" rel="stylesheet"/>-->
+			<link href="/website_cultivar/static/src/css/bootstrap-multiselect.css" rel="stylesheet"/>
 			<link href="/website_cultivar/static/src/css/cultivar_css.css" rel="stylesheet"/>
 
 		  <!-- Main Stylesheet File -->
@@ -32,6 +33,7 @@
 			<!-- <script src="jquery.min.js"></script> -->
 			<script src="/website_cultivar/static/src/js/owl.carousel.min.js"></script>
 			<script src="/website_cultivar/static/src/js/product_select.js"></script>
+			<script src="/website_cultivar/static/src/js/bootstrap-multiselect.js"></script>
         
       </xpath>
     </template>
