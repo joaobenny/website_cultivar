@@ -16,10 +16,10 @@ class WebsiteCultivar(http.Controller):
     @http.route('/page/homepage', type='http', auth="public", website=True)
     def cultivar_home(self, **post):
 
-        events = request.env['event.event'].sudo().search([])
-        posts = request.env['blog.post'].sudo().search([])
-        ip = request.httprequest.environ["REMOTE_ADDR"]
-        if ip == "127.0.0.1":
+        events = request.env['event.event'].sudo().search([]) # Gets all events on database
+        posts = request.env['blog.post'].sudo().search([]) # Gets all posts on database
+        ip = request.httprequest.environ["REMOTE_ADDR"] # Gets client IP
+        if ip == "127.0.0.1": # If running on server
             ip = "auto:ip"
             print ("\nClient IP: Local Host\n")
         else:
@@ -117,7 +117,7 @@ class WebsiteCultivar(http.Controller):
                         i[2] = e_name
                         i[7] = e[3]
                         continue
-                    else:
+                    else: # days with >1 event, separates names with ,
                         i[2] += ", " + e_name
                         i[7] = str(i[7]) + "-" + str(e[3])
         
@@ -152,7 +152,7 @@ class WebsiteCultivar(http.Controller):
         }
         return request.render("website_event.event_description_full", values)
 
-    # Event Inquiry "Main Page"
+    # Event Inquiry "Main Page", this def is to render page (and send data to xml)
     @http.route('/event/inquiry', type='http', auth="public", website=True)
     def event_inquiry(self, **kwargs):
         # states = request.env['res.country.state'].search([])
@@ -160,15 +160,20 @@ class WebsiteCultivar(http.Controller):
         product = request.env['event.product'].search([])
         partner_type = request.env['res.partner.type'].search([])
         event_type = request.env['event.type'].search([])
-        # periodo = request.env['event.recurrence'].search([])
+        periodo = request.env['event.recurrence'].search([])
+        distritos = request.env['res.country.state'].search([('country_id', '=', 185)])
+        concelhos = request.env['res.county'].search([])
+
         
         return http.request.render('website_cultivar.event_inquiry', {
             'products_type': products_type,
             'products': product,
             'partner_type': partner_type,
             'event_type': event_type,
-            # 'periodo': periodo
-            })
+            'periodo': periodo,
+            'distritos': distritos,
+            'concelhos': concelhos
+        })
 
     # Event Inquiry Process (send data to database)
     @http.route('/event/inquiry/process', type='http', auth="public", website=True)
@@ -199,27 +204,28 @@ class WebsiteCultivar(http.Controller):
         human_resources_group.users = [(3,new_user.id)]
 
         # Modify the users partner record, state_id': values['state'],
-        new_user.partner_id.write({'name': values['entidade_nome'], 'street': values['entidade_endereco'], 'zip': values['entidade_zip'], 'city': values['entidade_localidade']})
+        new_user.partner_id.write({'name': values['entidade_nome'], 'street': values['entidade_endereco'],
+         'zip': values['entidade_zip'], 'city': values['entidade_localidade'], 'state_id': values['entidade_distrito'],
+         'partner_type': values['entidade_tipo']})
+         # '': values['entidade_freguesia'], '':['entidade_concelho']
 
         if 'pessoa_nome' in values:
-            insert_values = {'parent_id': new_user.partner_id.id}
-            insert_values['name'] = values['pessoa_nome']
-            if 'pessoa_tel' in values: insert_values['phone'] = values['pessoa_tel']
-            if 'pessoa_email' in values: insert_values['email'] = values['pessoa_email']        
-            new_contact = request.env['res.partner'].sudo().create(insert_values)
+            insert_pessoa = {'parent_id': new_user.partner_id.id}
+            insert_pessoa['name'] = values['pessoa_nome']
+            if 'pessoa_tel' in values: insert_pessoa['phone'] = values['pessoa_tel']
+            if 'pessoa_email' in values: insert_pessoa['email'] = values['pessoa_email']        
+            new_contact = request.env['res.partner'].sudo().create(insert_pessoa)
 
-        # TO DO, fazer de forma a criar local do evento relacionado com o partner
-        # if 'pessoa_nome' in values:
-        #     insert_values = {'parent_id': new_user.partner_id.id}
-        #     insert_values['name'] = values['pessoa_nome']
-        #     if 'pessoa_tel' in values: insert_values['phone'] = values['pessoa_tel']
-        #     if 'pessoa_email' in values: insert_values['email'] = values['pessoa_email']        
-        #     new_event_local = request.env['res.partner'].sudo().create(insert_values)
+        if 'evento_local' in values:
+            insert_local = {'parent_id': new_user.partner_id.id}
+            insert_local['city'] = values['evento_local']
+            insert_local['type'] = "other" # Partner type: Other address
+            if 'evento_distrito' in values: insert_local['state_id'] = values['evento_distrito']
+            #if 'evento_concelho' in values: insert_local[''] = values['evento_concelho']
+            #if 'evento_freguesia' in values: insert_local[''] = values['evento_freguesia']        
+            event_local = request.env['res.partner'].sudo().create(insert_local)
 
-        # insert_event = {'address_id': new_event_local.partner_id.id, 'organizer_id': new_user.partner_id.id} 
-
-
-        insert_event = {'address_id': new_user.partner_id.id, 'organizer_id': new_user.partner_id.id}
+        insert_event = {'address_id': event_local.id, 'organizer_id': new_user.partner_id.id}
 
         if 'evento_nome' in values: insert_event['name'] = values['evento_nome']
         if 'date_begin' in values: insert_event['date_begin'] = values['date_begin']
@@ -227,10 +233,11 @@ class WebsiteCultivar(http.Controller):
         if 'evento_edicao' in values: insert_event['e_anos'] = values['evento_edicao']
         if 'evento_descricao' in values: insert_event['description'] = values['evento_descricao']
         if 'evento_tipo' in values: insert_event['event_type_id'] = values['evento_tipo']
-
-        # if '' in values: insert_event[''] = values['']
-
+        if 'evento_perio' in values: insert_event['recurrence_id'] = values['evento_perio']
+        
+        # Extra data
+        insert_event['website_published'] = True # Makes event visible on /events
         
         new_listing = request.env['event.event'].sudo().create(insert_event)
 
-        return http.request.render('website_cultivar.event_inquiry', {})
+        return http.request.render('website_cultivar.event_inquiry')
