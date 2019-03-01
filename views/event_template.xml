@@ -39,7 +39,7 @@
 			<div style="margin-bottom:5%" class="col-xs-12 col-sm-8 col-md-8">
 				<div class="text_left-align">
 					<span class="ded-event_name-text" t-field="event.name"/><br/>
-					<span class="ded-event_des-text" t-esc="event.description"></span>
+					<span class="ded-event_des-text" t-raw="event.description"></span>
 					<span style="color:black" t-esc="day"/>
 				</div>
 			</div>

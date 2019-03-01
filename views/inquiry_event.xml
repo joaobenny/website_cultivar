@@ -97,7 +97,7 @@
 												<label for="concelhos" style="display:none;">
 													Concelho
 												</label>
-												<select name="entidade_concelho" class="form-control">
+												<select name="entidade_concelho" class="form-control" required="True">
 													<option value="" selected="True" disabled="True">
 														Selecione Concelho
 													</option>
@@ -112,14 +112,14 @@
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label for="concelhos" style="display:none;">
+												<label for="freguesias" style="display:none;">
 													Freguesia
 												</label>
-												<select name="entidade_freguesia" class="form-control">
+												<select name="entidade_freguesia" class="form-control" required="True">
 													<option value="" selected="True" disabled="True">
 														Selecione Freguesia
 													</option>
-													<t t-foreach="concelhos" t-as="f">
+													<t t-foreach="freguesias" t-as="f">
 														<option t-attf-value="#{f.id}">
 															<t t-esc="f.name" />
 														</option>
@@ -185,13 +185,21 @@
 											</div>
 										</div>
 
-										<div class="col-sm-4">
+										<div class="col-sm-3">
 											<div class="form-group">
 												É recurrente? <input type="checkbox" id="is_recurrent" name="is_recurrent"  value="True"/>
 											</div>
 										</div>
 
-										<div class="col-sm-8">
+										<div class="col-sm-3">
+											<div class="form-group">
+												<div id="is_fixed_div" style="display:none">
+													Data é fixa? <input type="checkbox" id="is_fixed" name="is_fixed"  value="True"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
 											<div class="form-group">
 												<label for="periodo" style="display:none">
 													Periodicidade
@@ -314,14 +322,14 @@
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<label for="concelhos" style="display:none;">
+												<label for="freguesias" style="display:none;">
 													Freguesia
 												</label>
-												<select name="evento_freguesia" class="form-control">
+												<select name="evento_freguesia" class="form-control" required="True">
 													<option value="" selected="True" disabled="True">
 														Selecione Freguesia
 													</option>
-													<t t-foreach="concelhos" t-as="f">
+													<t t-foreach="freguesias" t-as="f">
 														<option t-attf-value="#{f.id}">
 															<t t-esc="f.name" />
 														</option>
@@ -396,9 +404,11 @@
 											$('#is_recurrent').change(function() {
 												if(this.checked) {
 													$("#recurrence_type").css("display", "block");
+													$("#is_fixed_div").css("display", "block");
 												}
 												else {
 													$("#recurrence_type").css("display", "none");
+													$("#is_fixed_div").css("display", "none");
 												}     
 											});
 
@@ -443,12 +453,6 @@
 												<label>
 													Informação complementar do evento
 												</label>
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input placeholder="Coordenadas GPS" type="text" name="gps" class="form-control"/> <!-- required="True"/> -->
 											</div>
 										</div>
 

@@ -13,6 +13,8 @@ class PartnerCultivar(models.Model):
     _inherit = "res.partner"
     
     partner_type = fields.Many2one("res.partner.type")
+    concelho = fields.Many2one("res.county")
+    freguesia = fields.Many2one("res.county.local")
 
 # Tabelas relacionadas com eventos
 class EventCultivarRecurrence(models.Model):
