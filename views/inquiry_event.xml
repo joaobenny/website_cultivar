@@ -46,7 +46,7 @@
 
 										<div class="col-sm-6">
 											<div class="form-group">
-												<input placeholder="E-mail (Utilizado para Acesso à Plataforma)" type="text" name="email" class="form-control" required="True"/>
+												<input placeholder="E-mail (Utilizado para Acesso à Plataforma)" type="email" name="email" class="form-control" required="True"/>
 											</div>
 										</div>
 
@@ -391,7 +391,7 @@
 												<div id="all_products" style="display:none; height: 200px; width: 250px; overflow-y: scroll; border:2px solid #ccc; float:left;">
 													<t t-foreach="products" t-as="p">
 														<div t-attf-name="#{int(p.product_type_id)}">
-															<input type="checkbox" t-attf-value="#{int(p.product_type_id)}"/><t t-esc="p.name"/>
+															<input type="checkbox" t-attf-value="#{p.id}"/><t t-esc="p.name"/>
 														</div>
 													</t>
 												</div>
