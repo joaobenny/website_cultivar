@@ -156,14 +156,14 @@ class WebsiteCultivar(http.Controller):
     @http.route('/event/inquiry', type='http', auth="public", website=True)
     def event_inquiry(self, **kwargs):
         # states = request.env['res.country.state'].search([])
-        products_type = request.env['event.product.type'].search([('parent_id', '=', False)])
-        product = request.env['event.product'].search([])
-        partner_type = request.env['res.partner.type'].search([])
-        event_type = request.env['event.type'].search([])
-        periodo = request.env['event.recurrence'].search([])
-        distritos = request.env['res.country.state'].search([('country_id', '=', 185)])
-        concelhos = request.env['res.county'].search([])
-        freguesia = request.env['res.county.local'].search([])
+        products_type = request.env['event.product.type'].sudo().search([('parent_id', '=', False)])
+        product = request.env['event.product'].sudo().search([])
+        partner_type = request.env['res.partner.type'].sudo().search([])
+        event_type = request.env['event.type'].sudo().search([])
+        periodo = request.env['event.recurrence'].sudo().search([])
+        distritos = request.env['res.country.state'].sudo().search([('country_id', '=', 185)])
+        concelhos = request.env['res.county'].sudo().search([])
+        freguesia = request.env['res.county.local'].sudo().search([])
         
         return http.request.render('website_cultivar.event_inquiry', {
             'products_type': products_type,
@@ -187,7 +187,7 @@ class WebsiteCultivar(http.Controller):
         if request.env['res.users'].sudo().search_count([('login','=', values['email'])]) > 0:
         
             mail = values['email']
-            return http.request.render('website_cultivar.user_mail', {'mail': mail} )
+            return http.request.render('website_cultivar.event_inquiry_error', {'mail': mail} )
 
         # Adds new user to DB, else:
         new_user = http.request.env['res.users'].sudo().create({'name': values['entidade_nome'], 'login': values['email'], 'email': values['email'], 'password': values['password']})
@@ -242,4 +242,4 @@ class WebsiteCultivar(http.Controller):
         
         new_listing = request.env['event.event'].sudo().create(insert_event)
 
-        return http.request.render('website_cultivar.event_inquiry')
+        return http.request.render('website_cultivar.event_inquiry_success')

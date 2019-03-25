@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="event_inquiry_error" name="Event submission error" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="text_center-align">
+					<p style="color:green; margin-top: 7%; font-size: 200%">Erro, o email utilizado já está registado</p>
+				</div>
+				<div class="form-group text-center">
+					<a href="/event/inquiry" class="btn btn-colored btn-theme-colored btn-lg pt-15 pb-15" type="object">
+						Voltar para o Formulario
+					</a>
+				</div>
+			</t>
+		</template>
+		<template id="event_inquiry_success" name="Event submission success" page="True">
+			<t t-call="website.layout">
+				<div id="wrap"  class="text_center-align">
+					<p style="color:green; margin-top: 5%; font-size: 200%">Registo efetuado com sucesso</p>
+				</div>
+				<div class="form-group text-center">
+					<a href="/" class="btn btn-colored btn-theme-colored btn-lg pt-15 pb-15" type="object">
+						Voltar á Página Inicial
+					</a>
+				</div>
+			</t>
+		</template>
+
 		<template id="event_inquiry" name="Event submission" page="True">
 			<t t-call="website.layout">
 				<div id="wrap" class="oe_structure">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12">
-								<form method="POST" action="/event/inquiry/process" enctype="multipart/form-data" id="booking-form" class="booking-form p-50 mb-0" data-bg-color="rgba(255, 255, 255, 0.7)" style="background: rgba(255, 255, 255, 0.7) none repeat scroll 0% 0% ! important;">
-									<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-									<div class="row">
+							<form method="POST" action="/event/inquiry/process" enctype="multipart/form-data" id="booking-form" class="booking-form p-50 mb-0" data-bg-color="rgba(255, 255, 255, 0.7)" style="background: rgba(255, 255, 255, 0.7) none repeat scroll 0% 0% ! important;">
+								<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+								<div class="row">
+									<div class="col-sm-12" style="margin-top:3%">
+										<div class="col-xs-12 col-sm-4 col-md-4">	
 
 										<!-- Dados da entidade -->
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<label for="self_description">
-													Entidade
+													<a style="color:green" >Entidade</a>
 												</label>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<input placeholder="Nome da entidade" type="text" name="entidade_nome" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="partner_type" style="display:none;">
 													Tipo de entidade organizadora
@@ -42,39 +68,39 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<input placeholder="E-mail (Utilizado para Acesso à Plataforma)" type="email" name="email" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+									
 											<div class="form-group">
 												<input placeholder="Password (Para Acesso à Plataforma)" type="password" name="password" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<input placeholder="Endereço" type="text" name="entidade_endereco" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+									
 											<div class="form-group">
 												<input placeholder="Código Postal" type="text" name="entidade_zip" class="form-control" required="True"/>
 											</div>
-										</div>
 										
-										<div class="col-sm-6">
+										
+							
 											<div class="form-group">
 												<input placeholder="Local" type="text" name="entidade_localidade" class="form-control" required="True"/>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-6">
+						
 											<div class="form-group">
 												<label for="distritos" style="display:none;">
 													Distrito / Provincia
@@ -90,9 +116,9 @@
 													</t>
 												</select>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="concelhos" style="display:none;">
 													Concelho
@@ -108,9 +134,9 @@
 													</t>
 												</select>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="freguesias" style="display:none;">
 													Freguesia
@@ -126,80 +152,80 @@
 													</t>
 												</select>
 											</div>
-										</div>
+									
 
 										<!-- Contactos da Entidade Organizadora -->
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<label>
-													Contactos da Pessoa Responsável
+													<a style="color:green" >Contactos da Pessoa Responsável</a>
 												</label>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-6">
 											<div class="form-group">
 												<input placeholder="Pessoa Responsável" type="text" name="pessoa_nome" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<input placeholder="Telefone" type="text" name="pessoa_tel" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+									
 											<div class="form-group">
 												<input placeholder="E-mail" type="text" name="pessoa_email" class="form-control" required="True"/>
 											</div>
 										</div>
-
+									
+									
+										<div class="col-xs-12 col-sm-8 col-md-8">
 										<!-- Evento -->
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<label>
-													Evento
+													<a style="color:green">Evento</a>
 												</label>
 											</div>
-										</div>
+										
 
 										<!-- Data do evento -->
-										<div class="col-sm-12">
+									
 											<div class="form-group">
 												<input placeholder="Designação" type="text" name="evento_nome" class="form-control" required="True"/>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-6">
+									
 											<div class="form-group">
 												Data Inicio
 												<input type="date" name="date_begin" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												Data de fim
 												<input type="date" name="date_end" class="form-control" required="True"/>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-3">
+										
 											<div class="form-group">
 												É recurrente? <input type="checkbox" id="is_recurrent" name="is_recurrent"  value="True"/>
 											</div>
-										</div>
+									
 
-										<div class="col-sm-3">
+							
 											<div class="form-group">
 												<div id="is_fixed_div" style="display:none">
 													Data é fixa? <input type="checkbox" id="is_fixed" name="is_fixed"  value="True"/>
 												</div>
 											</div>
-										</div>
-
-										<div class="col-sm-6">
+										
+									
 											<div class="form-group">
 												<label for="periodo" style="display:none">
 													Periodicidade
@@ -215,12 +241,12 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-12"></div>
+										
 
 										<!-- Informação do evento -->
-										<div class="col-sm-6">
+									
 											<div class="form-group">
 												<select name="evento_edicao" class="form-control" required="True">
 													<option value="" selected="true" disabled="disabled">
@@ -249,9 +275,9 @@
 													</option>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="event_type" style="display:none;">
 													Tipologia do Evento
@@ -267,24 +293,24 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-12">
+									
 											<div class="form-group">
 												<textarea placeholder="Breve Descrição do Evento" class="form-control" name="evento_descricao"></textarea>
 											</div>
-										</div>
+										
 
 										<!-- Dados do local do evento -->
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<label>
-													Local de realização do Evento
+													<a style="color:green" >Local de realização do Evento</a>
 												</label>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="distritos" style="display:none;">
 													Distrito / Provincia
@@ -300,9 +326,9 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="concelhos" style="display:none;">
 													Concelho
@@ -318,9 +344,8 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
 											<div class="form-group">
 												<label for="freguesias" style="display:none;">
 													Freguesia
@@ -336,24 +361,22 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
 											<div class="form-group">
 												<input placeholder="Local" type="text" name="evento_local" class="form-control" required="True"/>
 											</div>
-										</div>
-
+										
 										<!-- Tipo de produtos -->
-										<div class="col-sm-12">
+										
 											<div class="form-group">
 												<label>
-													Informação sobre os produtos
+													<a style="color:green" >Informação sobre os produtos</a>
 												</label>
 											</div>
-										</div>
+										
 
-										<div class="col-sm-6">
+										
 											<div class="form-group">
 												<label for="products_type" style="display:none;">
 													Tipo de Produtos Transacionados
@@ -366,7 +389,7 @@
 													</t>
 												</select>
 											</div>
-										</div>
+										
 
 										<div class="col-sm-6">
 											<div style="display:none" class="form-group">
@@ -447,28 +470,16 @@
 
 										</script>
 
-										<!-- Informação complementar do evento -->
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label>
-													Informação complementar do evento
-												</label>
-											</div>
 										</div>
-
-										<div class="col-sm-12">
-											<div class="form-group text-center">
-												<button data-loading-text="Please wait..." class="btn btn-colored btn-theme-colored btn-lg pt-15 pb-15" type="submit">
-													Registar
-												</button>
-												<!-- <button t-attf-class="btn btn-primary btn-lg">Register Profile</button> -->
-											</div>
-										</div>
-
-
 									</div>
-								</form>
-							</div>
+								</div>
+								<div class="form-group text-center" style="margin-top:3%">
+									<button data-loading-text="Please wait..." class="btn btn-colored btn-theme-colored btn-lg pt-15 pb-15" type="submit">
+										Registar
+									</button>
+									<!-- <button t-attf-class="btn btn-primary btn-lg">Register Profile</button> -->
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

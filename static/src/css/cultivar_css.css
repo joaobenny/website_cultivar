@@ -143,17 +143,17 @@
     /* END of Border styles */
 
     /* HR styles */
-    .date-hr{border: 0.5px solid #84B842; width: 80%; padding: 0px 0;}
+    .date-hr{border: 0.5px solid #84B842; padding: 0px;}
     /* END of HR styles */
 
     /* Text styles */
     .ded-year_month-text{font-family: Rajdhani; color: #009B48; font-size: 60px; font-weight: bold; font-weight: bold;}
     .ded-day-text{font-family: Rajdhani; color: #89B050; font-size: 70px; font-weight: bold; margin-right: 15%;}
-    .ded-event_name-text{font-family: Rajdhani; color: #6EB043; font-size: 60px; font-weight: bold; margin-left: 2%;}
-    .ded-event_des-text{font-family: Rajdhani; color: #84B842; font-size: 20px; font-weight: bold; margin-left: 2%;}
+    .ded-event_name-text{font-family: Rajdhani; color: #6EB043; font-size: 60px; font-weight: bold;}
+    .ded-event_des-text{font-family: Rajdhani; color: #84B842; font-size: 20px; font-weight: bold;}
     .ded-event_program_title-text{font-family: Rajdhani; color: darkgreen; font-size: 19px; font-weight: bold;}
     .ded-event_program-text{font-family: Rajdhani; color: darkgreen; font-size: 18px; font-weight: bold;}
-    .ded-event_weeek_day-text{font-family: Rajdhani; color: #84B842; font-size: 18px;}
+    .ded-event_weeek_day-text{font-family: Rajdhani; color: #84B842; font-size: 18px; font-weight: bold;}
     .ded-event_image-text{font-family: Rajdhani; color: white; font-size: 18px; font-weight: bold;}
     .ded-next_ev-text{font-family: Rajdhani; color: darkgreen; font-size: 21px; font-weight: bold;}
     .ded-next_ev-text a{font-family: Rajdhani; color: darkgreen; font-size: 18px; font-weight: bold;}
