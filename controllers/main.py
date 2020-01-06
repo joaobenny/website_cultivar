@@ -6,34 +6,44 @@ import datetime
 import requests
 from datetime import date
 import werkzeug
+import json
 
 from odoo import http
 from odoo.http import request
 
 
 class WebsiteCultivar(http.Controller):
-
     @http.route('/page/homepage', type='http', auth="public", website=True)
     def cultivar_home(self, **post):
-
         events = request.env['event.event'].sudo().search([]) # Gets all events on database
-        posts = request.env['blog.post'].sudo().search([]) # Gets all posts on database
+        posts = request.env['blog.post'].sudo().search([]) # Gets all posts on database   
         ip = request.httprequest.environ["REMOTE_ADDR"] # Gets client IP
         if ip == "127.0.0.1": # If running on server
             ip = "auto:ip"
             print ("\nClient IP: Local Host\n")
         else:
-            print ("\nClient IP: " + ip)
-
-        api_key = "0928dfce37ee46d2876171151190402"
-        url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)
-
+            print ("\nClient IP: " + ip) 
+        
+        ip_url = "http://api.ipstack.com/109.51.95.28?access_key=0fd42ce53c04501a1881ffd8bc9c00c0"
+        reply_ip = requests.get(ip_url)
+        ip_content = reply_ip.json()
+        lat = ip_content["latitude"]
+        lon = ip_content["longitude"]
+        
+        
+        api_key = "0a9f4d7f438a0ccd2bbe98e8ae6d7b30"        
+        #api_key = "b58a7a944556a73bd18f96fce1c44bdb"
+        #url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)
+        #url = "http://api.openweathermap.org/data/2.5/forecast?q=Fundão,pt&appid=36d4ffcd46186c2b0dc224fa7bb109d8&units=metric"
+        #url = "https://api.darksky.net/forecast/0a9f4d7f438a0ccd2bbe98e8ae6d7b30/40.1408,-7.5018?units=si"
+        url = "https://api.darksky.net/forecast/"+api_key+"/"+str(lat)+","+str(lon)+"?units=si"
         reply = requests.get(url)
         reply.raise_for_status()
         content = reply.json()
-        weather = content["forecast"]["forecastday"]
+        weather = content["daily"]
         print ("Weather API Status Code: {}".format(reply.status_code))
-        print ("Client Location based on its IP in the API: {}".format(content["location"]))
+	     #print ("Client Location based on its IP in the API: {}".format(ip_content["city"]))
+        #print ("Client Location based on its IP in the API: {}".format(content["latitude"]["longitude"]))
         print ("\n\n")
 
     # Calendar code #
@@ -123,9 +133,13 @@ class WebsiteCultivar(http.Controller):
         
         # Set Weather Information for first 7 days
         for i in xrange(0,7):
-            cal[i][8] = int(round(weather[i]["day"]["mintemp_c"]))
-            cal[i][9] = int(round(weather[i]["day"]["maxtemp_c"]))
-            cal[i][10] = weather[i]["day"]["condition"]["icon"]
+	         #cal[i][8] = int(round(weather[i]["day"]["mintemp_c"]))
+            #cal[i][9] = int(round(weather[i]["day"]["maxtemp_c"]))
+            #cal[i][10] = weather[i]["day"]["condition"]["icon"]
+            cal[i][8] = int(round(weather['data'][i]['temperatureMin']))
+            cal[i][9] = int(round(weather['data'][i]['temperatureMax']))
+            cal[i][10] = weather["data"][i]["icon"]
+
 
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar
