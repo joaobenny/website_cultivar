@@ -148,7 +148,7 @@
 											</div>
 											<div style="width:50%; float: left;">
 												<!--<img class="day_weather-icon" t-attf-src="{{day_weather_img}}"/>-->
-												<div t-attf-class="{{cal[10]}}"/>
+												<div t-attf-class="{{day_weather_img}} partly-cloudy-day" />
 											</div>
 										</t>
 										<t t-else="">

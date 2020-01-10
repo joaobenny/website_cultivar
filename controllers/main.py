@@ -7,11 +7,10 @@ import requests
 from datetime import date
 import werkzeug
 import json
-#import pygeoip
+
 
 from odoo import http
 from odoo.http import request
-
 
 class WebsiteCultivar(http.Controller):
     @http.route('/page/homepage', type='http', auth="public", website=True)
@@ -141,7 +140,6 @@ class WebsiteCultivar(http.Controller):
             cal[i][8] = int(round(weather['data'][i]['temperatureMin']))
             cal[i][9] = int(round(weather['data'][i]['temperatureMax']))
             cal[i][10] = weather["data"][i]["icon"]
-
 
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar

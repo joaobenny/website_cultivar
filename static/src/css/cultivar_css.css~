@@ -96,10 +96,10 @@
 
     /* Images styles */
     .day_weather-icon{height: 25px; width: 25px;}
-    .clear-day{height: 25px; width: 25px; background-image: url('/website_cultivar/static/src/img/clear-day.png'); background-size: 25px 25px; background-repeat: no-repeat; display:block}
-    .partly-cloudy-day{height: 25px; width: 25px; background-image: url('/website_cultivar/static/src/img/partly-cloudy-day.png'); background-size: 25px 25px; background-repeat: no-repeat; display:block}
-    .cloudy{height: 25px; width: 25px; background-image: url('/website_cultivar/static/src/img/cloudy.png'); background-size: 25px 25px; background-repeat: no-repeat; display:block}
-    .rain{height: 25px; width: 25px; background-image: url('/website_cultivar/static/src/img/rain.png'); background-size: 25px 25px; background-repeat: no-repeat; display:block}
+    .clear-day{height: 25px; width: 25px; background-image: url('/website_cultivar/static/src/img/rain.png'); background-size: 25px 25px; background-repeat: no-repeat; display:block}
+    .partly-cloudy-day{}
+    .cloudy{}
+    .rain{}
     /* END of Images styles */
 
     /* Not Using */

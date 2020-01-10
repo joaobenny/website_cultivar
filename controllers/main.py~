@@ -7,11 +7,10 @@ import requests
 from datetime import date
 import werkzeug
 import json
-#import pygeoip
+
 
 from odoo import http
 from odoo.http import request
-
 
 class WebsiteCultivar(http.Controller):
     @http.route('/page/homepage', type='http', auth="public", website=True)
@@ -32,8 +31,7 @@ class WebsiteCultivar(http.Controller):
         ip_content = reply_ip.json()
         lat = ip_content["latitude"]
         lon = ip_content["longitude"]
-        
-        
+   
         api_key = "0a9f4d7f438a0ccd2bbe98e8ae6d7b30"        
         #api_key = "b58a7a944556a73bd18f96fce1c44bdb"
         #url = "https://api.apixu.com/v1/forecast.json?key={0}&q={1}&days=7".format(api_key, ip)
@@ -143,7 +141,14 @@ class WebsiteCultivar(http.Controller):
             cal[i][9] = int(round(weather['data'][i]['temperatureMax']))
             cal[i][10] = weather["data"][i]["icon"]
 
-
+	     def icon(self):
+            all_icon = ["clear-day", "partly-cloudy-day", "cloudy", "rain"]
+           	for i in xrange(0,7):
+           		n[i] = weather["data"][i]["icon"]
+           		m = n
+            weather_icon = all_icon[m]
+            
+            return weather_icon
         c_day = cal[0] # Stores current day info from cal[]
         del cal[0] # Deletes current day from calendar
 
